@@ -123,6 +123,24 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
         
+        /* Alternative engagement buttons */
+        .alt-button {
+            padding: 0.75rem 1.5rem;
+            background: rgba(102, 126, 234, 0.1);
+            border: 2px solid #667eea;
+            border-radius: 25px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .alt-button:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
         /* Content Sections */
         .section {
             padding: 4rem 2rem;
@@ -407,6 +425,22 @@
                 </button>
             </form>
             <p style="font-size: 0.9rem; color: #888; margin-top: 0.5rem;">We respect your privacy. Unsubscribe anytime.</p>
+        </div>
+        
+        <!-- Alternative Engagement Options -->
+        <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #e0e0e0;">
+            <p style="font-size: 1rem; color: #666; margin-bottom: 1.5rem;">Not ready for the course? Explore these options:</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="begin-here-v2.html" class="alt-button">
+                    Try Interactive Experience
+                </a>
+                <a href="resources.html" class="alt-button">
+                    Browse Resources
+                </a>
+                <a href="program.html" class="alt-button">
+                    Learn About Program
+                </a>
+            </div>
         </div>
         
         <!-- Hidden success message -->
