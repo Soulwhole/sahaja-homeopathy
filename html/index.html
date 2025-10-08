@@ -391,7 +391,30 @@
         <h2>Explore the Unprejudiced Difference</h2>
         <p style="font-size: 1.2rem; margin-bottom: 1rem;">Join our 7-day free e-course: "The Art of Being an Unprejudiced Observer"</p>
         <p style="font-size: 1rem; color: #666; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">Daily lessons on developing presence, perception, and pattern recognition. No commitment required—just pure learning.</p>
-        <a href="begin-here-v2.html" class="cta-button">Start Your Free Course</a>
+        
+        <!-- Email Capture Form -->
+        <div style="max-width: 400px; margin: 0 auto 2rem;">
+            <form id="courseSignup" style="display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center;">
+                <input type="email" 
+                       id="courseEmail" 
+                       placeholder="Enter your email address" 
+                       required
+                       style="flex: 1; min-width: 250px; padding: 1rem; border: 2px solid #e0e0e0; border-radius: 25px; font-size: 1rem; outline: none;">
+                <button type="submit" 
+                        class="cta-button" 
+                        style="padding: 1rem 2rem; white-space: nowrap;">
+                    Start Free Course
+                </button>
+            </form>
+            <p style="font-size: 0.9rem; color: #888; margin-top: 0.5rem;">We respect your privacy. Unsubscribe anytime.</p>
+        </div>
+        
+        <!-- Hidden success message -->
+        <div id="signupSuccess" style="display: none; background: #e8f5e8; padding: 1.5rem; border-radius: 10px; max-width: 500px; margin: 0 auto;">
+            <h3 style="color: #2d5a2d; margin-bottom: 0.5rem;">✓ You're all set!</h3>
+            <p style="color: #2d5a2d;">Check your email for Day 1 of your free course. We'll send you one lesson each day for the next 7 days.</p>
+            <a href="begin-here-v2.html" class="cta-button" style="margin-top: 1rem;">Continue to Begin Here</a>
+        </div>
     </section>
 
     <!-- Footer -->
@@ -407,6 +430,23 @@
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
         }
+        
+        // Handle course signup form
+        document.getElementById('courseSignup').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('courseEmail').value;
+            
+            // Here you would typically send the email to your backend/email service
+            // For now, we'll just show the success message
+            console.log('Email captured:', email);
+            
+            // Hide form and show success message
+            document.getElementById('courseSignup').style.display = 'none';
+            document.getElementById('signupSuccess').style.display = 'block';
+            
+            // Optional: Track the conversion
+            // gtag('event', 'course_signup', { 'email': email });
+        });
     </script>
 </body>
 </html>
