@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sahaja Homeopathy - The Felt Sense Method</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+        /* Dropdown */
+        .has-dropdown { position: relative; }
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #667eea;
+            padding: 0.75rem 1rem;
+            border-radius: 0 0 6px 6px;
+            min-width: 180px;
+        }
+        .dropdown a { color: #fff; display: block; padding: 0.25rem 0; text-decoration: none; }
+        .has-dropdown:hover .dropdown { display: block; }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero .tagline {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+        
+        .cta-button {
+            background: white;
+            color: #667eea;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        /* Content Sections */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #667eea;
+            text-align: center;
+        }
+        
+        .section h3 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: #764ba2;
+        }
+        
+        .section p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        /* Vision Section */
+        .vision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .vision-card {
+            background: #f8f9ff;
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .vision-card h3 {
+            color: #667eea;
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+        
+        /* Three Pillars */
+        .pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .pillar {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .pillar:hover {
+            transform: translateY(-5px);
+        }
+        
+        .pillar h3 {
+            color: #667eea;
+            margin: 1rem 0;
+            font-size: 1.8rem;
+        }
+        
+        .pillar-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Quote Box */
+        .quote-box {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+            border-left: 5px solid #667eea;
+            padding: 2rem;
+            margin: 3rem 0;
+            border-radius: 5px;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #555;
+        }
+        
+        .quote-box .author {
+            text-align: right;
+            margin-top: 1rem;
+            font-weight: bold;
+            color: #764ba2;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #667eea;
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            .dropdown { position: static; display: block; background: #667eea; padding-left: 1rem; border-radius: 0; }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .pillars {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Sahaja Homeopathy</a>
+            <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li class="has-dropdown">
+                    <a href="#">About ▾</a>
+                    <div class="dropdown">
+                        <a href="approach.html">Our Approach</a>
+                        <a href="founder.html">Founder</a>
+                        <a href="focusing.html">Focusing</a>
+                    </div>
+                </li>
+                <li><a href="begin-here-v2.html">Begin Here</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="program.html">Program</a></li>
+                <li><a href="investment.html">Contact</a></li>
+                <li><a href="apply.html">Apply</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Sahaja Homeopathy</h1>
+        <p class="tagline">Where Unprejudiced Presence Meets AI-Augmented Precision</p>
+        <p>The first homeopathy program that systematically teaches presence and perception as trained skills before pattern recognition, partnered with AI for remedy precision.</p>
+        <a href="apply.html" class="cta-button">Apply for Beta Cohort</a>
+    </section>
+
+    <!-- Vision Section -->
+    <section class="section">
+        <h2>Reimagining Homeopathic Education</h2>
+        <p style="text-align: center; font-size: 1.2rem; max-width: 900px; margin: 0 auto 3rem;">Traditional homeopathic education teaches technique before perception. We reverse this. Sahaja trains you to <strong>be present first</strong>, making unprejudiced observation a trained skill—not hoped-for osmosis.</p>
+        
+        <div class="vision-grid">
+            <div class="vision-card">
+                <h3>The Problem</h3>
+                <p>Most homeopathy programs teach you <em>what</em> to look for (repertories, materia medica, patterns) before teaching you <em>how</em> to perceive clearly. The instrument of perception—your presence—remains untrained.</p>
+                <p>Result? Practitioners who can name remedies but struggle to truly meet patients in their lived experience.</p>
+            </div>
+            
+            <div class="vision-card">
+                <h3>The Sahaja Solution</h3>
+                <p><strong>Presence first, knowledge second.</strong> We begin with daily Focusing practice—a research-backed method for developing felt-sense awareness. You learn to perceive the whole person before analyzing parts.</p>
+                <p>Then we integrate AI for pattern processing, freeing you to stay human-centered where it matters most.</p>
+            </div>
+            
+            <div class="vision-card">
+                <h3>The Outcome</h3>
+                <p>In 9 months, you become a practitioner who is <strong>therapeutic regardless of finding the perfect similimum</strong>—because the process itself initiates healing.</p>
+                <p>You'll manage 15-20 patients confidently, with presence as your foundation and AI as your partner.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Three Pillars -->
+    <section class="section" style="background: #f8f9ff;">
+        <h2>The Three Pillars of Sahaja</h2>
+        <div class="pillars">
+            <div class="pillar">
+                <div class="pillar-icon">🧘</div>
+                <h3>PRESENCE First</h3>
+                <p>Daily Focusing practice before pattern recognition. Train your instrument of perception through embodied awareness. Make unprejudiced observation a systematic skill, not accidental osmosis.</p>
+            </div>
+            
+            <div class="pillar">
+                <div class="pillar-icon">🤝</div>
+                <h3>HumanFirst</h3>
+                <p>Connect with the person behind symptoms. Use therapeutic listening that initiates healing before remedy selection. Stay centered in the human encounter where your presence is irreplaceable.</p>
+            </div>
+            
+            <div class="pillar">
+                <div class="pillar-icon">🤖</div>
+                <h3>AI-Synergy</h3>
+                <p>Partner with AI for pattern processing and remedy precision. Free your cognitive bandwidth for what machines cannot do—sensing the felt quality of another's experience.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote -->
+    <section class="section">
+        <div class="quote-box">
+            "This individualizing examination demands nothing but freedom from prejudice and sound senses, attention in observing and fidelity in tracing the picture of the disease."
+            <div class="author">— Samuel Hahnemann, Organon Aphorism 83</div>
+        </div>
+        <p style="text-align: center; font-size: 1.2rem;">Hahnemann knew it 200 years ago. <strong>Sahaja makes it systematic today.</strong></p>
+    </section>
+
+    <!-- Why This Matters -->
+    <section class="section" style="background: #f8f9ff;">
+        <h2>Why This Matters Now</h2>
+        <p><strong>AI is transforming homeopathy.</strong> Within 5 years, pattern recognition and repertory work will be largely automated. The question is: what becomes of the homeopath?</p>
+        
+        <p>Sahaja's answer: <strong>The homeopath becomes what AI cannot replace</strong>—a skilled, embodied presence who can attune to the subtle movements of vital force through direct, unprejudiced perception.</p>
+        
+        <p>We're not training you to compete with AI. We're training you to do what only humans can do—and then partner with AI for everything else.</p>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section" style="text-align: center; padding: 5rem 2rem;">
+        <h2>Ready to Begin?</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Join our founding cohort of 8-10 practitioners learning the method that makes presence a trained skill.</p>
+        <a href="apply.html" class="cta-button">Apply Now</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Sahaja Homeopathy. All rights reserved.</p>
+        <p style="margin-top: 1rem;">
+            <a href="mailto:contact@sahajahomeopathy.com">contact@sahajahomeopathy.com</a>
+        </p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
+

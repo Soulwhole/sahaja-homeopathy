@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Program - Sahaja Homeopathy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* Navigation - Same as Home */
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+        /* Dropdown */
+        .has-dropdown { position: relative; }
+        .dropdown { display:none; position:absolute; top:100%; left:0; background:#667eea; padding:0.75rem 1rem; border-radius:0 0 6px 6px; min-width:180px; }
+        .dropdown a { color:#fff; display:block; padding:0.25rem 0; text-decoration:none; }
+        .has-dropdown:hover .dropdown { display:block; }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Content Sections */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #667eea;
+            text-align: center;
+        }
+        
+        .section h3 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: #764ba2;
+        }
+        
+        .section p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        /* PRESENCE Method Steps */
+        .presence-steps {
+            margin-top: 3rem;
+        }
+        
+        .step {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(102, 126, 234, 0.1);
+            border-left: 5px solid #667eea;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .step-letter {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .step h3 {
+            margin: 0;
+            color: #667eea;
+            font-size: 1.5rem;
+        }
+        
+        .step p {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Phase Cards */
+        .phases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .phase-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.1);
+        }
+        
+        .phase-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .phase-card h3 {
+            color: #667eea;
+            margin-top: 0;
+        }
+        
+        .phase-card ul {
+            margin-left: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .phase-card li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .outcome {
+            background: #f8f9ff;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            border-left: 3px solid #667eea;
+        }
+        
+        .outcome strong {
+            color: #764ba2;
+        }
+        
+        /* Weekly Rhythm */
+        .weekly-schedule {
+            background: #f8f9ff;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        
+        .day-schedule {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .day-schedule:last-child {
+            border-bottom: none;
+        }
+        
+        .day {
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        /* What's Included */
+        .included-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .included-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(102, 126, 234, 0.1);
+        }
+        
+        .included-item h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        /* Mobile */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #667eea;
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            .dropdown { position: static; display: block; background: #667eea; padding-left: 1rem; border-radius: 0; }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .phases {
+                grid-template-columns: 1fr;
+            }
+            
+            .day-schedule {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Sahaja Homeopathy</a>
+            <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li class="has-dropdown">
+                    <a href="#">About ▾</a>
+                    <div class="dropdown">
+                        <a href="approach.html">Our Approach</a>
+                        <a href="founder.html">Founder</a>
+                        <a href="focusing.html">Focusing</a>
+                    </div>
+                </li>
+                <li><a href="begin-here-v2.html">Begin Here</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="program.html" class="active">Program</a></li>
+                <li><a href="investment.html">Contact</a></li>
+                <li><a href="apply.html">Apply</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>The 9-Month Journey</h1>
+        <p>A systematic path from presence to practice-ready practitioner</p>
+    </section>
+
+    <!-- PRESENCE Method -->
+    <section class="section">
+        <h2>The PRESENCE Method</h2>
+        <p style="text-align: center; max-width: 900px; margin: 0 auto 2rem;">A systematic framework for homeopathic practice grounded in embodied awareness. Each letter represents both a skill and a way of being with patients.</p>
+        
+        <div class="presence-steps">
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-letter">P</div>
+                    <h3>Pause: Ground in Presence</h3>
+                </div>
+                <p><strong>Before the consultation begins:</strong> Take three conscious breaths. Feel your feet on the ground. Notice your own inner state. Clear residue from previous encounters. This is not meditation—it's professional preparation. Just as a surgeon scrubs in, you cultivate unprejudiced awareness.</p>
+                <p><em>Skill trained:</em> Somatic grounding, attention cultivation, presence as deliberate practice.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-letter">R</div>
+                    <h3>Resonate: Attune to Deeper Meaning</h3>
+                </div>
+                <p><strong>As the patient speaks:</strong> Listen beneath words to felt sense. When they say "I feel stuck," notice: where do you sense that stuckness in your own body? Resonance is not analyzing—it's allowing their experience to register in you non-verbally, as sensation and quality.</p>
+                <p><em>Skill trained:</em> Felt-sense attunement, somatic empathy, distinguishing thought from sensing.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-letter">E</div>
+                    <h3>Explore: Compassionate Co-Traveling</h3>
+                </div>
+                <p><strong>In the unfolding dialogue:</strong> Use Focusing-informed questions that invite patients deeper into their own experience. "When you say 'heavy,' what is the quality of that heaviness?" Not interrogating—accompanying them to edges they haven't yet articulated.</p>
+                <p><em>Skill trained:</em> Therapeutic questioning, holding space, depth facilitation.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-letter">S</div>
+                    <h3>Synthesize: See the Whole Pattern</h3>
+                </div>
+                <p><strong>After deep listening:</strong> Offer back what you're sensing—not interpretation, but reflection. "I'm noticing a pattern of... does that resonate?" Give the patient a "handle" for their own experience. This synthesis itself can be therapeutic.</p>
+                <p><em>Skill trained:</em> Pattern recognition through felt sense, mirroring, validation.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-letter">E</div>
+                    <h3>Eliminate: Remove Obstacles</h3>
+                </div>
+                <p><strong>Before prescribing:</strong> Identify what blocks the vital force—environmental, emotional, relational, chemical. Address these first. Sometimes obstacle removal is the remedy. Always consider: what needs to clear before healing can occur?</p>
+                <p><em>Skill trained:</em> Holistic case analysis, obstacle recognition, health preservation.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-letter">N</div>
+                    <h3>Nurture: Support with Precision</h3>
+                </div>
+                <p><strong>When selecting remedy:</strong> Here AI becomes your partner. Feed the felt-sense pattern into AI tools. Cross-reference against superclass frameworks. Choose remedy from integrated human-AI intelligence. Precision matters—but follows presence.</p>
+                <p><em>Skill trained:</em> AI-assisted remedy selection, integrating intuition with data.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-letter">C</div>
+                    <h3>Continue: Fresh Presence at Follow-Ups</h3>
+                </div>
+                <p><strong>At each return visit:</strong> Meet the patient anew. Notice what's shifted. Resist the urge to confirm previous diagnosis. Stay present to current reality. Follow-ups are not progress reports—they're fresh encounters.</p>
+                <p><em>Skill trained:</em> Longitudinal care, case management, beginner's mind.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-letter">E</div>
+                    <h3>Evolve: The Lifelong Learning Path</h3>
+                </div>
+                <p><strong>Throughout your practice:</strong> Regular peer supervision. Continued Focusing practice. Engage with emerging research. Presence is not a destination but an ever-deepening capacity. Your instrument requires ongoing tuning.</p>
+                <p><em>Skill trained:</em> Reflective practice, humility, professional development.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Three Phases -->
+    <section class="section" style="background: #f8f9ff;">
+        <h2>Three Phases of Development</h2>
+        
+        <div class="phases">
+            <div class="phase-card">
+                <div class="phase-number">1</div>
+                <h3>Months 1-3: Presence Foundation</h3>
+                <ul>
+                    <li>Daily Focusing practice (guided audio)</li>
+                    <li>Unprejudiced observation training</li>
+                    <li>Supervised case-taking (process emphasis, not remedy)</li>
+                    <li>Somatic awareness cultivation</li>
+                    <li>Introduction to AI tools</li>
+                </ul>
+                <div class="outcome">
+                    <strong>Outcome:</strong> You can maintain presence during consultations, articulate felt sense, and use basic AI assistance. You understand that therapeutic process matters as much as remedy selection.
+                </div>
+            </div>
+
+            <div class="phase-card">
+                <div class="phase-number">2</div>
+                <h3>Months 4-6: Pattern Recognition</h3>
+                <ul>
+                    <li>Superclass framework as sensing tools</li>
+                    <li>Kingdom differentiation through felt experience</li>
+                    <li>Miasmatic patterns as energetic layers</li>
+                    <li>Advanced AI partnership for remedy precision</li>
+                    <li>Complex case analysis</li>
+                </ul>
+                <div class="outcome">
+                    <strong>Outcome:</strong> You sense patterns emerging from felt-sense work, not encyclopedic knowledge. AI handles detailed pattern matching while you stay attuned to the human encounter.
+                </div>
+            </div>
+
+            <div class="phase-card">
+                <div class="phase-number">3</div>
+                <h3>Months 7-9: Integration & Launch</h3>
+                <ul>
+                    <li>Full caseload management (15-20 patients)</li>
+                    <li>Obstacle removal and health preservation</li>
+                    <li>Follow-up mastery</li>
+                    <li>Professional practice setup</li>
+                    <li>Business and ethics</li>
+                </ul>
+                <div class="outcome">
+                    <strong>Outcome:</strong> You're practice-ready. Managing patients confidently with presence as foundation, AI as partner, and a lifetime access to our growing content library for continued learning.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Weekly Rhythm -->
+    <section class="section">
+        <h2>Your Weekly Rhythm</h2>
+        <div class="weekly-schedule">
+            <div class="day-schedule">
+                <div class="day">Monday</div>
+                <div>Video modules (self-paced, 1-2 hours) + Daily Focusing practice (20 minutes)</div>
+            </div>
+            <div class="day-schedule">
+                <div class="day">Tuesday</div>
+                <div>Independent case work + AI practice + Daily Focusing (20 minutes)</div>
+            </div>
+            <div class="day-schedule">
+                <div class="day">Wednesday</div>
+                <div><strong>Live group supervision</strong> (3 hours) + Daily Focusing (20 minutes)</div>
+            </div>
+            <div class="day-schedule">
+                <div class="day">Thursday</div>
+                <div>Continued practice, 1:1 check-ins available + Daily Focusing (20 minutes)</div>
+            </div>
+            <div class="day-schedule">
+                <div class="day">Friday</div>
+                <div>Peer Focusing partnerships + Case documentation + Daily Focusing (20 minutes)</div>
+            </div>
+            <div class="day-schedule">
+                <div class="day">Weekend</div>
+                <div>Integration, journaling, reading, rest + Daily Focusing practice (20 minutes)</div>
+            </div>
+        </div>
+        <p style="margin-top: 2rem; text-align: center;"><strong>Total time commitment:</strong> 10-15 hours/week including practice</p>
+    </section>
+
+    <!-- What's Included -->
+    <section class="section" style="background: #f8f9ff;">
+        <h2>What's Included</h2>
+        <div class="included-grid">
+            <div class="included-item">
+                <h4>📚 Complete Curriculum</h4>
+                <p>Weekly video modules, reading materials, case studies, and practice exercises</p>
+            </div>
+            <div class="included-item">
+                <h4>🎯 Live Supervision</h4>
+                <p>Weekly 3-hour group sessions for case presentation and feedback</p>
+            </div>
+            <div class="included-item">
+                <h4>🧘 Focusing Training</h4>
+                <p>Guided audio practices, peer partnership matching, ongoing support</p>
+            </div>
+            <div class="included-item">
+                <h4>🤖 AI Tools & Prompts</h4>
+                <p>Custom prompt library, tool training, integration strategies</p>
+            </div>
+            <div class="included-item">
+                <h4>👥 Peer Community</h4>
+                <p>Private group for questions, case discussions, and lifelong connections</p>
+            </div>
+            <div class="included-item">
+                <h4>📖 Lifetime Resource Access</h4>
+                <p>All content library materials including future additions (alumni benefit)</p>
+            </div>
+            <div class="included-item">
+                <h4>💬 1:1 Support</h4>
+                <p>Monthly individual check-ins, email support throughout program</p>
+            </div>
+            <div class="included-item">
+                <h4>📜 Certificate</h4>
+                <p>Completion certificate upon finishing all requirements</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>Ready to Transform Your Practice?</h2>
+        <p style="font-size: 1.2rem; margin: 1.5rem 0;">Join the founding cohort and learn the method that makes presence a trained skill.</p>
+        <a href="apply.html" class="cta-button">Apply Now</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Sahaja Homeopathy. All rights reserved.</p>
+        <p style="margin-top: 1rem;">
+            <a href="mailto:contact@sahajahomeopathy.com">contact@sahajahomeopathy.com</a>
+        </p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Begin Here - Experience Sahaja</title>
+    <meta name="description" content="Experience the five milestones of Sahaja Homeopathy in 15 minutes. Not reading about it—feeling it.">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --presence-color: #7c9cad;
+            --perception-color: #b8a88a;
+            --pattern-color: #6d8a66;
+            --precision-color: #667eea;
+            --preserver-color: #a67850;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            background: var(--primary-gradient);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .progress-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+            max-width: 500px;
+            margin: 0 2rem;
+        }
+        
+        .progress-bar {
+            flex: 1;
+            height: 8px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: white;
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+        
+        .progress-text {
+            color: white;
+            font-size: 0.9rem;
+            min-width: 80px;
+        }
+        
+        .milestone-stepper {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: 1rem;
+        }
+        
+        .stepper-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .stepper-dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+        
+        .stepper-dot.completed {
+            background: rgba(255,255,255,0.8);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.3s backwards;
+        }
+        
+        .start-button {
+            background: white;
+            color: #667eea;
+            padding: 1.25rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            animation: fadeInUp 1s ease 0.6s backwards;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .start-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        
+        .scroll-cue {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        /* Experience Section */
+        .experience-section {
+            min-height: 100vh;
+            padding: 6rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .experience-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .experience-section h2 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .experience-section .subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .section-intent {
+            font-size: 1rem;
+            color: #888;
+            font-style: italic;
+        }
+        
+        /* Navigation Controls */
+        .section-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 2rem;
+        }
+        
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background: rgba(102, 126, 234, 0.1);
+            border: 2px solid #667eea;
+            border-radius: 25px;
+            color: #667eea;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .nav-button:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* Milestone 1: Presence */
+        .breathing-circle {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+            outline: none;
+        }
+        
+        .breathing-circle:hover {
+            transform: scale(1.05);
+        }
+        
+        .breathing-circle:focus {
+            outline: 3px solid rgba(255,255,255,0.5);
+        }
+        
+        .breathing-circle.breathing {
+            animation: breathe 8s ease-in-out infinite;
+        }
+        
+        .breathing-text {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .breath-progress {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .breath-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transition: background 0.3s;
+        }
+        
+        .breath-dot.active {
+            background: white;
+        }
+        
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.3); }
+            50% { transform: scale(1); }
+        }
+        
+        .instruction-box {
+            background: #f8f9ff;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            max-width: 600px;
+            text-align: center;
+            border-left: 5px solid #667eea;
+        }
+        
+        /* Milestone 2: Perception */
+        .video-container {
+            max-width: 800px;
+            width: 100%;
+            background: #f8f9ff;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--perception-color);
+            overflow: hidden;
+            min-height: auto;
+        }
+        .perception-panels { width: 100%; display: block; }
+        .perception-panel { width: 100%; padding-right: 0; display: flex; flex-direction: column; justify-content: flex-start; gap: 0.75rem; margin-bottom: 1rem; }
+        .quality-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-bottom: 0.5rem; }
+        .quality-option { padding: 0.75rem 1rem; background: white; border: 2px solid #e0e0e0; border-radius: 10px; cursor: pointer; transition: all 0.2s; text-align: center; }
+        .quality-option:hover { border-color: var(--perception-color); box-shadow: 0 5px 12px rgba(184,168,138,0.2); }
+        .quality-option.selected { background: linear-gradient(135deg, var(--perception-color) 0%, #d4c4a8 100%); color: white; border-color: var(--perception-color); }
+        .panel-nav { display:flex; justify-content: space-between; margin-top: 0.25rem; }
+        .panel-btn { padding: 0.5rem 1rem; border: 2px solid var(--perception-color); color: var(--perception-color); background: transparent; border-radius: 20px; cursor: pointer; }
+        .panel-btn:hover { background: var(--perception-color); color: white; }
+        
+        .patient-story {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            font-style: italic;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+        }
+        
+        .body-map {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .body-part {
+            padding: 1.5rem;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            outline: none;
+        }
+        
+        .body-part:hover {
+            border-color: var(--perception-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(184, 168, 138, 0.2);
+        }
+        
+        .body-part:focus {
+            outline: 2px solid var(--perception-color);
+        }
+        
+        .body-part.selected {
+            background: linear-gradient(135deg, var(--perception-color) 0%, #d4c4a8 100%);
+            color: white;
+            border-color: var(--perception-color);
+        }
+        
+        /* Milestone 3: Pattern */
+        .case-card {
+            max-width: 900px;
+            width: 100%;
+            background: #f8f9ff;
+            padding: 2.5rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--pattern-color);
+        }
+        
+        .case-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .highlight:hover {
+            background: #ffd700;
+        }
+        
+        .pattern-choices {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .pattern-choice {
+            padding: 2rem;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            outline: none;
+        }
+        
+        .pattern-choice:hover {
+            border-color: var(--pattern-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(109, 138, 102, 0.2);
+        }
+        
+        .pattern-choice:focus {
+            outline: 2px solid var(--pattern-color);
+        }
+        
+        .pattern-choice.correct {
+            background: linear-gradient(135deg, var(--pattern-color) 0%, #8fa888 100%);
+            color: white;
+            border-color: var(--pattern-color);
+        }
+        
+        /* Milestone 4: AI Precision */
+        .ai-chat-container {
+            max-width: 800px;
+            width: 100%;
+            background: #f8f9ff;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--precision-color);
+        }
+        
+        .chat-messages {
+            height: 400px;
+            overflow-y: auto;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .message {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-radius: 10px;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .message.user {
+            background: var(--primary-gradient);
+            color: white;
+            margin-left: 20%;
+        }
+        
+        .message.ai {
+            background: #e8ecff;
+            margin-right: 20%;
+        }
+        
+        .chat-input-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--precision-color);
+        }
+        
+        .suggestion-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .chip {
+            padding: 0.5rem 1rem;
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid #667eea;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .chip:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        .send-button {
+            padding: 1rem 2rem;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+        
+        .send-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Milestone 5: Preserver */
+        .scenario-container {
+            max-width: 900px;
+            width: 100%;
+            background: #f8f9ff;
+            padding: 2.5rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--preserver-color);
+        }
+        
+        .scenario-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+        
+        .decision-buttons {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        
+        .decision-button {
+            padding: 1.5rem;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .decision-button:hover {
+            border-color: var(--preserver-color);
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(166, 120, 80, 0.2);
+        }
+        
+        .decision-button:focus {
+            outline: 2px solid var(--preserver-color);
+        }
+        
+        .decision-button.selected {
+            background: linear-gradient(135deg, var(--preserver-color) 0%, #c8956f 100%);
+            color: white;
+            border-color: var(--preserver-color);
+        }
+        
+        .feedback {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            display: none;
+        }
+        
+        .feedback.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+        
+        /* Final Section */
+        .final-section {
+            background: var(--primary-gradient);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .final-section h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .final-section p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+        }
+        
+        .milestone-recap {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+            max-width: 800px;
+        }
+        
+        .recap-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .recap-item .number {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .recap-item .name {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            background: white;
+            color: #667eea;
+            padding: 1.25rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+        
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            .breathing-circle.breathing {
+                animation: none;
+            }
+            
+            .breathing-circle:hover {
+                transform: none;
+            }
+            
+            .body-part:hover,
+            .pattern-choice:hover,
+            .decision-button:hover {
+                transform: none;
+            }
+            
+            .start-button:hover,
+            .cta-button:hover {
+                transform: none;
+            }
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .experience-section h2 {
+                font-size: 2rem;
+            }
+            
+            .breathing-circle {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .body-map {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .pattern-choices {
+                grid-template-columns: 1fr;
+            }
+            
+            .message.user {
+                margin-left: 10%;
+            }
+            
+            .message.ai {
+                margin-right: 10%;
+            }
+            
+            .progress-container {
+                display: none;
+            }
+            
+            .milestone-recap {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation with Progress -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Sahaja Homeopathy</a>
+            <div class="progress-container">
+                <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text"><span id="progressText">0</span>% Complete</div>
+                <div class="milestone-stepper">
+                    <div class="stepper-dot" onclick="jumpToMilestone(1)" title="Presence"></div>
+                    <div class="stepper-dot" onclick="jumpToMilestone(2)" title="Perception"></div>
+                    <div class="stepper-dot" onclick="jumpToMilestone(3)" title="Pattern"></div>
+                    <div class="stepper-dot" onclick="jumpToMilestone(4)" title="Precision"></div>
+                    <div class="stepper-dot" onclick="jumpToMilestone(5)" title="Preserver"></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <h1>Begin Here</h1>
+        <p>Experience the five milestones of Sahaja Homeopathy in 15 minutes.<br>Not just reading about it—<strong>Experience the Difference</strong>.</p>
+        <button class="start-button" onclick="startJourney()">Begin Your Journey</button>
+        <div class="scroll-cue">↓</div>
+    </section>
+
+    <!-- Milestone 1: Presence -->
+    <section class="experience-section" id="presence" style="background: linear-gradient(to bottom, #ffffff 0%, #f0f4ff 100%);">
+        <div class="section-header">
+            <h2 style="color: var(--presence-color);">Milestone 1: Presence</h2>
+            <p class="subtitle">Clear. Full. Unhooked.</p>
+            <p class="section-intent">You'll practice grounding yourself before observing others</p>
+        </div>
+        
+        <div class="breathing-circle" id="breathingCircle" onclick="startBreathing()" tabindex="0" role="button" aria-label="Start breathing exercise">
+            <div class="breathing-text" id="breathingText">Click to Begin<br>Grounding</div>
+        </div>
+        
+        <div class="breath-progress" id="breathProgress" style="display: none;">
+            <div class="breath-dot"></div>
+            <div class="breath-dot"></div>
+            <div class="breath-dot"></div>
+        </div>
+        
+        <div class="instruction-box">
+            <p><strong>Before you can perceive another clearly, you must clear yourself.</strong></p>
+            <p style="margin-top: 1rem;">Click the circle and breathe with it. Notice how external noise fades. This is unprejudiced presence—the foundation of everything that follows.</p>
+        </div>
+        
+        <div class="section-nav">
+            <button class="nav-button" onclick="resetMilestone(1)" id="resetPresence">Reset</button>
+            <button class="nav-button" onclick="nextMilestone(1)" id="nextPresence" disabled>Next Step</button>
+        </div>
+    </section>
+
+    <!-- Milestone 2: Perception -->
+    <section class="experience-section" id="perception" style="background: linear-gradient(to bottom, #FDF2E9 0%, #FBE8D3 100%);">
+        <div class="section-header">
+            <h2 style="color: var(--perception-color);">Milestone 2: Perception</h2>
+            <p class="subtitle">Choiceless awareness. Sensing, not analyzing.</p>
+            <p class="section-intent">You'll learn to feel what's beneath words in your own body</p>
+        </div>
+        
+        <div class="video-container">
+            <div class="perception-panels" id="perceptionPanels">
+            <!-- Panel 1: Location selection -->
+            <div class="perception-panel">
+                <div class="patient-story">
+                    "Every night, I lie awake, certain someone will break in. I check the locks three times, but still can't sleep. Even now, at 32, every unexpected knock makes my heart race like I'm still that terrified child..."
+                </div>
+                
+                <p style="margin-bottom: 1rem; font-weight: 600;">As you read this, give yourselt permission to be in this person's shoes. Now feel it in your body</p>
+                <p style="margin-bottom: 1rem; font-weight: 800;">Where is this feeling living in your body?</p>
+                <p style="margin-bottom: 1rem; font-size: 0.95rem; color: #666;">This is resonance—not analysis...  just sense the feeling in your own experience inside you. </p>
+                <p style="margin-bottom: 2rem; font-size: 0.95rem; color: #666;"><strong>You can select more than one.</strong></p>
+                
+                <div class="body-map">
+                <div class="body-part" onclick="selectBodyPart(this, 'chest')" tabindex="0" role="button" aria-label="Select chest/heart">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">💓</div>
+                    <div>Chest/Heart</div>
+                </div>
+                <div class="body-part" onclick="selectBodyPart(this, 'throat')" tabindex="0" role="button" aria-label="Select throat">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">😰</div>
+                    <div>Throat</div>
+                </div>
+                <div class="body-part" onclick="selectBodyPart(this, 'stomach')" tabindex="0" role="button" aria-label="Select stomach">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🦋</div>
+                    <div>Stomach</div>
+                </div>
+                <div class="body-part" onclick="selectBodyPart(this, 'shoulders')" tabindex="0" role="button" aria-label="Select shoulders">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">💪</div>
+                    <div>Shoulders</div>
+                </div>
+                <div class="body-part" onclick="selectBodyPart(this, 'head')" tabindex="0" role="button" aria-label="Select head">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🧠</div>
+                    <div>Head</div>
+                </div>
+                <div class="body-part" onclick="selectBodyPart(this, 'whole')" tabindex="0" role="button" aria-label="Select whole body">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌊</div>
+                    <div>Whole Body</div>
+                </div>
+                </div>
+                
+                <div id="perceptionFeedback" class="feedback">
+                    <p><strong>Perfect.</strong> You just practiced felt-sense perception. There is nothing right or wrong. Perception is what is. You are learning to trust your own perception.</p>
+                    <p style="margin-top: .5rem;">Move on to check the <strong>quality of the feeling</strong> you sensed.</p>
+                </div>
+            </div>
+            
+            <!-- Panel 2: Quality selection -->
+            <div class="perception-panel">
+                <div>
+                <p style="font-weight: 600; margin-bottom: 1rem;">What <em>quality</em> best matches what you felt?</p>
+                <div class="quality-grid" id="qualityGrid">
+                    <div class="quality-option" onclick="selectQuality(this,'tight')">🫁 Tight / constricted</div>
+                    <div class="quality-option" onclick="selectQuality(this,'heavy')">🪨 Heavy / pressed down</div>
+                    <div class="quality-option" onclick="selectQuality(this,'hollow')">🕳️ Hollow / empty</div>
+                    <div class="quality-option" onclick="selectQuality(this,'alert')">⚡ Hyper-alert / vigilant</div>
+                    <div class="quality-option" onclick="selectQuality(this,'heat')">🔥 Hot / burning</div>
+                    <div class="quality-option" onclick="selectQuality(this,'cold')">❄️ Cold / numb</div>
+                </div>
+                
+                <div id="perceptionQualityFeedback" class="feedback">
+                    <p><strong>Perfect.</strong> You named the quality you sensed. There is nothing right or wrong here—quality is simply what is.</p>
+                    <p style="margin-top: .5rem;">Press "Next Step" to continue toward <strong>Pattern</strong> sensing.</p>
+                </div>
+                </div>
+                <div class="panel-nav"></div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="section-nav">
+            <button class="nav-button" onclick="prevMilestone(2)">Back</button>
+            <button class="nav-button" onclick="resetMilestone(2)" id="resetPerception">Reset</button>
+            <button class="nav-button" onclick="nextMilestone(2)" id="nextPerception" disabled>Next Step</button>
+        </div>
+    </section>
+
+    <!-- Milestone 3: Pattern Familiarity -->
+    <section class="experience-section" id="pattern" style="background: linear-gradient(to bottom, #E8F5E9 0%, #C8E6C9 100%);">
+        <div class="section-header">
+            <h2 style="color: var(--pattern-color);">Milestone 3: Pattern Familiarity</h2>
+            <p class="subtitle">Recognizing energetic signatures through felt sense</p>
+            <p class="section-intent">You'll identify superclass patterns from felt experience</p>
+            <div id="sensedSummary" style="margin-top: 0.75rem; font-size: 0.95rem;">
+                <span id="sensedPill" style="display:inline-block; background:#eef2ff; color:#4f46e5; border:1px solid #c7d2fe; padding:0.25rem 0.6rem; border-radius:999px;">You sensed: —</span>
+            </div>
+        </div>
+        
+        <div class="case-card">
+            <p style="font-weight: 600; margin-bottom: 1rem;">Read this case snippet. Notice what stands out:</p>
+            
+            <div class="case-text">
+                "My biggest fear? <span class="highlight">Being exposed</span>. At work presentations, I prepare for weeks but still feel like <span class="highlight">an imposter</span>. When my colleague got promoted instead of me, I couldn't eat for days. It's like <span class="highlight">I need to prove myself constantly</span>, but nothing is ever enough. My girlfriend says I'm <span class="highlight">always comparing</span> myself to others—am I smarter, more successful, more accomplished? I can't stop."
+            </div>
+            
+            <p style="font-weight: 600; margin-bottom: 1rem;">What energetic pattern do you sense here?</p>
+            
+            <div class="pattern-choices">
+                <div id="pattern-security" class="pattern-choice" onclick="selectPattern(this, false)" tabindex="0" role="button" aria-label="Select Security/Intrusion pattern">
+                    <div style="font-weight: bold; color: #667eea; margin-bottom: 0.5rem;">Security / Intrusion</div>
+                    <div style="font-size: 0.95rem;">Fear of external threat, need for protection</div>
+                </div>
+                <div id="pattern-performance" class="pattern-choice" onclick="selectPattern(this, true)" tabindex="0" role="button" aria-label="Select Performance/Proving pattern">
+                    <div style="font-weight: bold; color: #667eea; margin-bottom: 0.5rem;">Performance / Proving</div>
+                    <div style="font-size: 0.95rem;">Need to demonstrate worth, comparison, achievement</div>
+                </div>
+                <div id="pattern-split" class="pattern-choice" onclick="selectPattern(this, false)" tabindex="0" role="button" aria-label="Select Split/Duality pattern">
+                    <div style="font-weight: bold; color: #667eea; margin-bottom: 0.5rem;">Split / Duality</div>
+                    <div style="font-size: 0.95rem;">Inner conflict, torn between opposites</div>
+                </div>
+                <div id="pattern-structure" class="pattern-choice" onclick="selectPattern(this, false)" tabindex="0" role="button" aria-label="Select Structure/Control pattern">
+                    <div style="font-weight: bold; color: #667eea; margin-bottom: 0.5rem;">Structure / Control</div>
+                    <div style="font-size: 0.95rem;">Need for order, fear of chaos</div>
+                </div>
+                <div id="pattern-acute" class="pattern-choice" onclick="selectPattern(this, false)" tabindex="0" role="button" aria-label="Select Acute Sensitivity pattern">
+                    <div style="font-weight: bold; color: #667eea; margin-bottom: 0.5rem;">Acute Sensitivity</div>
+                    <div style="font-size: 0.95rem;">Oversensitive, thin boundaries, easily overwhelmed</div>
+                </div>
+                <div id="pattern-survival" class="pattern-choice" onclick="selectPattern(this, false)" tabindex="0" role="button" aria-label="Select Survival/Desperation pattern">
+                    <div style="font-weight: bold; color: #667eea; margin-bottom: 0.5rem;">Survival / Desperation</div>
+                    <div style="font-size: 0.95rem;">Life-or-death intensity, no middle ground</div>
+                </div>
+            </div>
+            
+            <div id="patternFeedback" class="feedback">
+                <p><strong>Yes! SC 3: Performance/Proving.</strong></p>
+                <p style="margin-top: 1rem;">You sensed it through the <em>quality</em>: comparison, needing to prove, self-worth tied to achievement. Not from memorizing symptoms—from feeling the energetic signature. This is pattern recognition through presence.</p>
+                <details style="margin-top: 1rem;">
+                    <summary style="cursor: pointer; font-weight: bold;">Why this is correct?</summary>
+                    <ul style="margin-top: 0.5rem; margin-left: 1rem;">
+                        <li>"I need to prove myself constantly" - core SC 3 theme</li>
+                        <li>"always comparing myself to others" - comparison-based identity</li>
+                        <li>"nothing is ever enough" - driven quality</li>
+                    </ul>
+                </details>
+            </div>
+        </div>
+        
+        <div class="section-nav">
+            <button class="nav-button" onclick="prevMilestone(3)">Back</button>
+            <button class="nav-button" onclick="resetMilestone(3)" id="resetPattern">Reset</button>
+            <button class="nav-button" onclick="nextMilestone(3)" id="nextPattern" disabled>Next Step</button>
+        </div>
+    </section>
+
+    <!-- Milestone 4: AI Precision -->
+    <section class="experience-section" id="precision" style="background: linear-gradient(to bottom, #E3F2FD 0%, #BBDEFB 100%);">
+        <div class="section-header">
+            <h2 style="color: var(--precision-color);">Milestone 4: Precision</h2>
+            <p class="subtitle">Synergy with AI for remedy matching</p>
+            <p class="section-intent">You'll see how human perception + AI analysis creates precision</p>
+        </div>
+        
+        <div class="ai-chat-container">
+            <p style="margin-bottom: 1.5rem; font-weight: 600;">Now watch AI partnership in action. Type your felt-sense observation:</p>
+            
+            <div class="suggestion-chips">
+                <div class="chip" onclick="useSuggestion('comparison')">comparison</div>
+                <div class="chip" onclick="useSuggestion('driven')">driven</div>
+                <div class="chip" onclick="useSuggestion('proving')">proving</div>
+                <div class="chip" onclick="useSuggestion('worth')">worth</div>
+                <div class="chip" onclick="useSuggestion('achievement')">achievement</div>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message ai">
+                    <strong>AI Assistant:</strong> I'm ready to help with remedy analysis. Share what you perceived about the patient's experience—the felt quality, not just symptoms.
+                </div>
+            </div>
+            
+            <div class="chat-input-container">
+                <input type="text" 
+                       class="chat-input" 
+                       id="chatInput" 
+                       placeholder='Try typing: "Constant need to prove worth, comparison-based identity, driven quality"'
+                       onkeypress="if(event.key==='Enter') sendMessage()">
+                <button class="send-button" onclick="sendMessage()">Send</button>
+            </div>
+            
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: #666; text-align: center;">
+                <em>This is a simulation. In practice, you'd use actual AI tools like ChatGPT or Claude.</em>
+            </p>
+        </div>
+        
+        <div class="section-nav">
+            <button class="nav-button" onclick="prevMilestone(4)">Back</button>
+            <button class="nav-button" onclick="resetMilestone(4)" id="resetPrecision">Reset</button>
+            <button class="nav-button" onclick="nextMilestone(4)" id="nextPrecision" disabled>Next Step</button>
+        </div>
+    </section>
+
+    <!-- Milestone 5: Preserver of Health -->
+    <section class="experience-section" id="preserver" style="background: linear-gradient(to bottom, #FFF3E0 0%, #FFE0B2 100%);">
+        <div class="section-header">
+            <h2 style="color: var(--preserver-color);">Milestone 5: Preserver of Health</h2>
+            <p class="subtitle">Removing obstacles before prescribing</p>
+            <p class="section-intent">You'll learn when NOT to prescribe—following Hahnemann's direction</p>
+        </div>
+        
+        <div class="scenario-container">
+            <div class="scenario-text">
+                <strong>Case Scenario:</strong> You've identified the remedy—Anacardium 200C for this SC 3 pattern. But before prescribing, you notice the patient mentions working 14-hour days, drinking 6 cups of coffee daily, and sleeping 4-5 hours. His wife left him 2 months ago, and he's "dealing with it by staying busy."
+                
+                <p style="margin-top: 1.5rem; font-weight: 600;">What do you address first?</p>
+            </div>
+            
+            <div class="decision-buttons">
+                <div class="decision-button" onclick="selectDecision(this, false)" tabindex="0" role="button" aria-label="Give remedy immediately">
+                    <strong>Give the remedy immediately</strong><br>
+                    <span style="font-size: 0.9rem; color: #666;">The similimum will handle everything</span>
+                </div>
+                <div class="decision-button" onclick="selectDecision(this, false)" tabindex="0" role="button" aria-label="Refer to therapist first">
+                    <strong>Refer to a therapist first</strong><br>
+                    <span style="font-size: 0.9rem; color: #666;">This needs psychological intervention</span>
+                </div>
+                <div class="decision-button" onclick="selectDecision(this, true)" tabindex="0" role="button" aria-label="Discuss obstacle removal">
+                    <strong>Discuss obstacle removal before prescribing</strong><br>
+                    <span style="font-size: 0.9rem; color: #666;">Address sleep, caffeine, and unprocessed grief as blocks to vital force</span>
+                </div>
+                <div class="decision-button" onclick="selectDecision(this, false)" tabindex="0" role="button" aria-label="Give lower potency">
+                    <strong>Give a lower potency to be safe</strong><br>
+                    <span style="font-size: 0.9rem; color: #666;">30C instead of 200C given the stress</span>
+                </div>
+            </div>
+            
+            <div id="preserverFeedback" class="feedback">
+                <p><strong>Exactly right. Address obstacles first.</strong></p>
+                <p style="margin-top: 1rem;">The remedy can't work fully when the vital force is suppressed by exhaustion, stimulants, and unprocessed trauma. Sometimes obstacle removal <em>is</em> the prescription. You become a preserver of health—not just a remedy dispenser.</p>
+                <p style="margin-top: 1rem;"><em>This is where AI can't replace you. Only human wisdom knows when NOT to prescribe.</em></p>
+                
+                <div style="margin-top: 1.5rem; padding: 1rem; background: #f8f9ff; border-radius: 8px;">
+                    <p style="font-weight: bold; margin-bottom: 0.5rem;">Next best actions:</p>
+                    <ul style="margin-left: 1rem;">
+                        <li>Sleep hygiene protocol (consistent bedtime, dark room)</li>
+                        <li>Gradual caffeine reduction (not cold turkey)</li>
+                        <li>Grief support resources or referral</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-nav">
+            <button class="nav-button" onclick="prevMilestone(5)">Back</button>
+            <button class="nav-button" onclick="resetMilestone(5)" id="resetPreserver">Reset</button>
+            <button class="nav-button" onclick="nextMilestone(5)" id="nextPreserver" disabled>Next Step</button>
+        </div>
+    </section>
+
+    <!-- Final Section -->
+    <section class="final-section">
+        <h2>You've Experienced the Five Milestones</h2>
+        <p>In 15 minutes, you felt what takes most practitioners years to discover by osmosis: <strong>Presence → Perception → Pattern → Precision → Preservation</strong></p>
+        <p>This is Sahaja Homeopathy. Not theory—embodied practice. Not hoped-for gifts—trained skills.</p>
+        
+        <div class="milestone-recap">
+            <div class="recap-item">
+                <div class="number">1</div>
+                <div class="name">Presence</div>
+            </div>
+            <div class="recap-item">
+                <div class="number">2</div>
+                <div class="name">Perception</div>
+            </div>
+            <div class="recap-item">
+                <div class="number">3</div>
+                <div class="name">Pattern</div>
+            </div>
+            <div class="recap-item">
+                <div class="number">4</div>
+                <div class="name">Precision</div>
+            </div>
+            <div class="recap-item">
+                <div class="number">5</div>
+                <div class="name">Preserver</div>
+            </div>
+        </div>
+        
+        <p style="font-size: 1.5rem; font-weight: bold; margin: 2rem 0;">Ready to make this your foundation?</p>
+        <a href="apply.html" class="cta-button">Apply to Program</a>
+        <p style="margin-top: 2rem; font-size: 1rem; opacity: 0.9;">
+            <a href="index.html" style="color: white; text-decoration: underline;">Return to Home</a> | 
+            <a href="program.html" style="color: white; text-decoration: underline;">Learn About the 9-Month Journey</a>
+        </p>
+    </section>
+
+    <script>
+        let currentMilestone = 0;
+        const milestones = ['hero', 'presence', 'perception', 'pattern', 'precision', 'preserver'];
+        let breathCount = 0;
+        let breathingActive = false;
+        
+        // Session storage for progress persistence
+        function saveProgress() {
+            sessionStorage.setItem('sahajaProgress', JSON.stringify({
+                currentMilestone: currentMilestone,
+                completedMilestones: getCompletedMilestones()
+            }));
+        }
+        
+        function loadProgress() {
+            const saved = sessionStorage.getItem('sahajaProgress');
+            if (saved) {
+                const data = JSON.parse(saved);
+                currentMilestone = data.currentMilestone;
+                updateProgress();
+                updateStepper();
+                
+                // Show resume button if not at start
+                if (currentMilestone > 0) {
+                    showResumeButton();
+                }
+            }
+        }
+        
+        function getCompletedMilestones() {
+            const completed = [];
+            if (breathCount >= 3) completed.push(1);
+            if (document.querySelector('.body-part.selected')) completed.push(2);
+            if (document.querySelector('.pattern-choice.correct')) completed.push(3);
+            if (document.querySelector('.message.user')) completed.push(4);
+            if (document.querySelector('.decision-button.selected')) completed.push(5);
+            return completed;
+        }
+        
+        function showResumeButton() {
+            const hero = document.getElementById('hero');
+            const resumeBtn = document.createElement('button');
+            resumeBtn.className = 'start-button';
+            resumeBtn.style.marginTop = '1rem';
+            resumeBtn.textContent = 'Resume Journey';
+            resumeBtn.onclick = () => {
+                document.getElementById('hero').style.display = 'none';
+                const targetSection = document.getElementById(milestones[currentMilestone]);
+                targetSection.classList.add('visible');
+                window.scrollTo({ top: targetSection.offsetTop - 100, behavior: 'smooth' });
+            };
+            hero.appendChild(resumeBtn);
+        }
+        
+        // Progress tracking
+        function updateProgress() {
+            const progress = (currentMilestone / (milestones.length - 1)) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = Math.round(progress);
+            document.querySelector('[role="progressbar"]').setAttribute('aria-valuenow', Math.round(progress));
+            saveProgress();
+        }
+        
+        function updateStepper() {
+            const dots = document.querySelectorAll('.stepper-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.remove('active', 'completed');
+                if (index < currentMilestone) {
+                    dot.classList.add('completed');
+                } else if (index === currentMilestone) {
+                    dot.classList.add('active');
+                }
+            });
+        }
+        
+        function jumpToMilestone(milestoneNum) {
+            if (milestoneNum <= currentMilestone) {
+                document.getElementById('hero').style.display = 'none';
+                const targetSection = document.getElementById(milestones[milestoneNum]);
+                targetSection.classList.add('visible');
+                window.scrollTo({ top: targetSection.offsetTop - 100, behavior: 'smooth' });
+            }
+        }
+        
+        // Start journey
+        function startJourney() {
+            document.getElementById('hero').style.display = 'none';
+            currentMilestone = 1;
+            updateProgress();
+            updateStepper();
+            document.getElementById('presence').classList.add('visible');
+            window.scrollTo({ top: document.getElementById('presence').offsetTop - 100, behavior: 'smooth' });
+        }
+        
+        // Navigation functions
+        function nextMilestone(milestoneNum) {
+            // Milestone 2 now stacked vertically; no intermediate slide needed
+            if (milestoneNum < milestones.length - 1) {
+                currentMilestone = milestoneNum + 1;
+                updateProgress();
+                updateStepper();
+                const nextSection = document.getElementById(milestones[currentMilestone]);
+                nextSection.classList.add('visible');
+                window.scrollTo({ top: nextSection.offsetTop - 100, behavior: 'smooth' });
+                if (currentMilestone === 3) {
+                    preselectPatternFromQuality();
+                }
+            }
+        }
+
+        function preselectPatternFromQuality(){
+            const mapping = {
+                tight: 'structure',
+                heavy: 'survival',
+                hollow: 'split',
+                alert: 'security',
+                heat: 'acute',
+                cold: 'security'
+            };
+            const target = mapping[selectedQuality];
+            if (!target) return;
+            const card = document.getElementById(`pattern-${target}`);
+            if (!card) return;
+            // simulate a correct/incorrect based on target
+            // Only 'performance' is wired as correct in copy; so style selection only
+            document.querySelectorAll('.pattern-choice').forEach(el => { el.classList.remove('correct'); el.style.opacity = '0.5'; });
+            card.style.opacity = '1';
+            card.style.border = '2px solid var(--pattern-color)';
+        }
+        
+        function prevMilestone(milestoneNum) {
+            if (milestoneNum > 1) {
+                currentMilestone = milestoneNum - 1;
+                updateProgress();
+                updateStepper();
+                const prevSection = document.getElementById(milestones[currentMilestone]);
+                prevSection.classList.add('visible');
+                window.scrollTo({ top: prevSection.offsetTop - 100, behavior: 'smooth' });
+            }
+        }
+        
+        function resetMilestone(milestoneNum) {
+            switch(milestoneNum) {
+                case 1: // Presence
+                    breathCount = 0;
+                    breathingActive = false;
+                    document.getElementById('breathingCircle').classList.remove('breathing');
+                    document.getElementById('breathingText').innerHTML = 'Click to Begin<br>Grounding';
+                    document.getElementById('breathProgress').style.display = 'none';
+                    document.getElementById('nextPresence').disabled = true;
+                    break;
+                    
+                case 2: // Perception
+                    document.querySelectorAll('.body-part').forEach(el => el.classList.remove('selected'));
+                    document.getElementById('perceptionFeedback').classList.remove('show');
+                    document.getElementById('nextPerception').disabled = true;
+                    break;
+                    
+                case 3: // Pattern
+                    document.querySelectorAll('.pattern-choice').forEach(el => {
+                        el.classList.remove('correct');
+                        el.style.opacity = '1';
+                        el.style.border = '2px solid #e0e0e0';
+                    });
+                    document.getElementById('patternFeedback').classList.remove('show');
+                    document.getElementById('nextPattern').disabled = true;
+                    break;
+                    
+                case 4: // Precision
+                    document.getElementById('chatMessages').innerHTML = '<div class="message ai"><strong>AI Assistant:</strong> I\'m ready to help with remedy analysis. Share what you perceived about the patient\'s experience—the felt quality, not just symptoms.</div>';
+                    document.getElementById('chatInput').value = '';
+                    document.getElementById('nextPrecision').disabled = true;
+                    break;
+                    
+                case 5: // Preserver
+                    document.querySelectorAll('.decision-button').forEach(el => {
+                        el.classList.remove('selected');
+                        el.style.opacity = '0.5';
+                        el.style.border = '2px solid #e0e0e0';
+                    });
+                    document.getElementById('preserverFeedback').classList.remove('show');
+                    document.getElementById('nextPreserver').disabled = true;
+                    break;
+            }
+        }
+        
+        function skipMilestone(milestoneNum) {
+            nextMilestone(milestoneNum);
+        }
+        
+        // Breathing exercise
+        function startBreathing() {
+            if (breathingActive) return;
+            
+            breathingActive = true;
+            const circle = document.getElementById('breathingCircle');
+            const text = document.getElementById('breathingText');
+            const progress = document.getElementById('breathProgress');
+            
+            circle.classList.add('breathing');
+            progress.style.display = 'flex';
+            
+            const breathCycle = setInterval(() => {
+                breathCount++;
+                const dots = progress.querySelectorAll('.breath-dot');
+                
+                if (breathCount <= 3) {
+                    // Update progress dots
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('active', index < breathCount);
+                    });
+                    
+                    // Inhale
+                    setTimeout(() => {
+                        text.innerHTML = 'Breathe In<br><span style="font-size: 1.2rem;">Expand...</span>';
+                    }, 0);
+                    
+                    // Hold
+                    setTimeout(() => {
+                        text.innerHTML = 'Hold<br><span style="font-size: 1.2rem;">Notice...</span>';
+                    }, 4000);
+                    
+                    // Exhale
+                    setTimeout(() => {
+                        text.innerHTML = 'Breathe Out<br><span style="font-size: 1.2rem;">Release...</span>';
+                    }, 6000);
+                } else {
+                    clearInterval(breathCycle);
+                    text.innerHTML = 'Grounded<br><span style="font-size: 1.2rem;">✓ Complete</span>';
+                    
+                    // Enable continue button
+                    document.getElementById('nextPresence').disabled = false;
+                    
+                    setTimeout(() => {
+                        nextMilestone(1);
+                    }, 2000);
+                }
+            }, 8000);
+        }
+        
+        // Body part selection (Perception)
+        let selectedLocation = '';
+        let selectedQuality = '';
+        function selectBodyPart(element, part) {
+            // Allow multiple selections
+            element.classList.toggle('selected');
+            if (!selectedLocation) selectedLocation = part;
+            
+            // Show feedback after first selection
+            const feedback = document.getElementById('perceptionFeedback');
+            if (!feedback.classList.contains('show')) {
+                setTimeout(() => {
+                    feedback.classList.add('show');
+                    
+                    // Advance to quality panel
+                    const panels = document.getElementById('perceptionPanels');
+                    panels.classList.add('step2');
+                    // Enable continue button
+                    document.getElementById('nextPerception').disabled = false;
+                }, 500);
+            }
+        }
+
+        function selectQuality(el, key){
+            document.querySelectorAll('.quality-option').forEach(o=>o.classList.remove('selected'));
+            el.classList.add('selected');
+            const qfb = document.getElementById('perceptionQualityFeedback');
+            if (qfb && !qfb.classList.contains('show')) qfb.classList.add('show');
+            selectedQuality = key;
+        }
+        function perceptionPrev(){
+            const panels = document.getElementById('perceptionPanels');
+            panels.classList.remove('step2');
+        }
+        function perceptionNext(){
+            // If a quality is selected, we keep Next enabled; otherwise briefly prompt
+            const selected = document.querySelector('.quality-option.selected');
+            if (!selected) {
+                const q = document.getElementById('qualityGrid');
+                q.style.outline = '2px solid var(--perception-color)';
+                setTimeout(()=>{ q.style.outline = 'none'; }, 1000);
+                return;
+            }
+            // Populate sensed summary before advancing with main Next
+            const pill = document.getElementById('sensedPill');
+            if (pill) {
+                const loc = selectedLocation || 'body';
+                const label = selected.textContent.trim();
+                pill.textContent = `You sensed: ${loc} • ${label}`;
+            }
+        }
+        
+        // Pattern selection
+        function selectPattern(element, isCorrect) {
+            // Remove previous selections
+            document.querySelectorAll('.pattern-choice').forEach(el => {
+                el.classList.remove('correct');
+                el.style.opacity = '0.5';
+            });
+            
+            if (isCorrect) {
+                element.classList.add('correct');
+                element.style.opacity = '1';
+                
+                const feedback = document.getElementById('patternFeedback');
+                setTimeout(() => {
+                    feedback.classList.add('show');
+                    
+                    // Enable continue button
+                    document.getElementById('nextPattern').disabled = false;
+                }, 500);
+            } else {
+                element.style.opacity = '1';
+                element.style.border = '2px solid #e74c3c';
+                
+                setTimeout(() => {
+                    element.style.border = '2px solid #e0e0e0';
+                    element.style.opacity = '0.5';
+                }, 1000);
+            }
+        }
+        
+        // Suggestion chips
+        function useSuggestion(text) {
+            const input = document.getElementById('chatInput');
+            input.value = text;
+            input.focus();
+        }
+        
+        // AI Chat
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const messages = document.getElementById('chatMessages');
+            const userMessage = input.value.trim();
+            
+            if (!userMessage) return;
+            
+            // Add user message
+            const userDiv = document.createElement('div');
+            userDiv.className = 'message user';
+            userDiv.innerHTML = `<strong>You:</strong> ${userMessage}`;
+            messages.appendChild(userDiv);
+            
+            input.value = '';
+            messages.scrollTop = messages.scrollHeight;
+            
+            // Simulate AI thinking
+            setTimeout(() => {
+                const aiDiv = document.createElement('div');
+                aiDiv.className = 'message ai';
+                
+                // Analyze the message for keywords
+                const lowerMessage = userMessage.toLowerCase();
+                let response = '';
+                
+                if (lowerMessage.includes('prove') || lowerMessage.includes('comparison') || lowerMessage.includes('performance') || lowerMessage.includes('worth')) {
+                    response = `<strong>AI Assistant:</strong> Based on your felt-sense observation of <em>"constant need to prove worth, comparison-based identity"</em>, I'm analyzing patterns consistent with <strong>SC 3 (Performance/Proving)</strong>.<br><br>
+                    Top remedy considerations:<br>
+                    <strong>1. Anacardium orientale</strong> - Inferiority complex, need to prove oneself, feels he must succeed<br>
+                    <strong>2. Lycopodium</strong> - Anticipatory anxiety about performance, comparison with others<br>
+                    <strong>3. Nux vomica</strong> - Ambitious, competitive, driven personality<br><br>
+                    Would you like to explore differentials, or share more about physical symptoms and life context?`;
+                } else {
+                    response = `<strong>AI Assistant:</strong> I see you've noted: "${userMessage}"<br><br>
+                    This helps with pattern recognition. To refine remedy selection, I'd need:<br>
+                    • The energetic quality you sensed (driven? desperate? divided?)<br>
+                    • Physical symptoms or sensations<br>
+                    • Life context or triggers<br><br>
+                    What felt-sense quality stood out most to you?`;
+                }
+                
+                aiDiv.innerHTML = response;
+                messages.appendChild(aiDiv);
+                messages.scrollTop = messages.scrollHeight;
+                
+                // Move to next section after first meaningful exchange
+                if (lowerMessage.includes('prove') || lowerMessage.includes('comparison') || lowerMessage.includes('performance')) {
+                    setTimeout(() => {
+                        const finalAi = document.createElement('div');
+                        finalAi.className = 'message ai';
+                        finalAi.innerHTML = `<strong>AI Assistant:</strong> This is how we partner. <strong>You provide the felt-sense perception that only humans can access. I provide the encyclopedic cross-referencing.</strong> Together, we achieve precision neither could reach alone.`;
+                        messages.appendChild(finalAi);
+                        messages.scrollTop = messages.scrollHeight;
+                        
+                        // Enable continue button
+                        document.getElementById('nextPrecision').disabled = false;
+                    }, 2000);
+                }
+            }, 1500);
+        }
+        
+        // Decision selection (Preserver)
+        function selectDecision(element, isCorrect) {
+            // Remove previous selections
+            document.querySelectorAll('.decision-button').forEach(el => {
+                el.classList.remove('selected');
+                el.style.opacity = '0.5';
+            });
+            
+            if (isCorrect) {
+                element.classList.add('selected');
+                element.style.opacity = '1';
+                
+                const feedback = document.getElementById('preserverFeedback');
+                setTimeout(() => {
+                    feedback.classList.add('show');
+                    
+                    // Enable continue button
+                    document.getElementById('nextPreserver').disabled = false;
+                }, 500);
+            } else {
+                element.style.opacity = '1';
+                element.style.border = '2px solid #e74c3c';
+                
+                setTimeout(() => {
+                    element.style.border = '2px solid #e0e0e0';
+                    element.style.opacity = '0.5';
+                }, 1000);
+            }
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                const focused = document.activeElement;
+                if (focused && focused.onclick) {
+                    e.preventDefault();
+                    focused.onclick();
+                }
+            }
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProgress();
+            updateStepper();
+        });
+        
+        // Scroll-triggered visibility
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.experience-section');
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.75 && rect.bottom > 0) {
+                    section.classList.add('visible');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

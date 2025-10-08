@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Approach - Sahaja Homeopathy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+        /* Dropdown */
+        .has-dropdown { position: relative; }
+        .dropdown { display:none; position:absolute; top:100%; left:0; background:#667eea; padding:0.75rem 1rem; border-radius:0 0 6px 6px; min-width:180px; }
+        .dropdown a { color:#fff; display:block; padding:0.25rem 0; text-decoration:none; }
+        .has-dropdown:hover .dropdown { display:block; }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Content Sections */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #667eea;
+            text-align: center;
+        }
+        
+        .section h3 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: #764ba2;
+        }
+        
+        .section p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        /* Story Box */
+        .story-box {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+            padding: 2.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 5px solid #667eea;
+        }
+        
+        .story-box p {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        /* Superclass Grid */
+        .superclass-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .superclass-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(102, 126, 234, 0.1);
+            border-top: 4px solid #667eea;
+        }
+        
+        .sc-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .superclass-card h3 {
+            margin-top: 0;
+            color: #667eea;
+        }
+        
+        /* Comparison Table */
+        .comparison-table {
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 3px 15px rgba(102, 126, 234, 0.1);
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background: #f8f9ff;
+        }
+        
+        .check {
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        /* Focusing Section */
+        .focusing-principles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .principle-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(102, 126, 234, 0.1);
+        }
+        
+        .principle-card h4 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        /* Quote Box */
+        .quote-box {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+            border-left: 5px solid #667eea;
+            padding: 2rem;
+            margin: 3rem 0;
+            border-radius: 5px;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #555;
+        }
+        
+        .quote-box .author {
+            text-align: right;
+            margin-top: 1rem;
+            font-weight: bold;
+            color: #764ba2;
+        }
+        
+        /* CTA */
+        .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        /* Visual Journey Interactive Elements */
+        .milestone-circle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2) !important;
+        }
+        
+        .milestone-container {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Mobile */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #667eea;
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            .dropdown { position: static; display: block; background: #667eea; padding-left: 1rem; border-radius: 0; }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 0.5rem;
+            }
+            
+            /* Mobile Visual Journey */
+            .milestone-container {
+                flex-direction: column !important;
+                text-align: center;
+                margin-left: 0 !important;
+                margin-bottom: 3rem !important;
+            }
+            
+            .milestone-circle {
+                margin: 0 auto 1.5rem auto !important;
+                width: 120px !important;
+                height: 120px !important;
+            }
+            
+            .milestone-container div:last-child {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                text-align: center !important;
+                max-width: 100% !important;
+            }
+            
+            .milestone-container div:last-child h3 {
+                font-size: 1.5rem !important;
+            }
+            
+            .milestone-container div:last-child p {
+                font-size: 1rem !important;
+            }
+            
+            /* Hide SVG path on mobile */
+            .milestone-container svg {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Sahaja Homeopathy</a>
+            <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li class="has-dropdown">
+                    <a href="#" class="active">About ▾</a>
+                    <div class="dropdown">
+                        <a href="approach.html">Our Approach</a>
+                        <a href="founder.html">Founder</a>
+                        <a href="focusing.html">Focusing</a>
+                    </div>
+                </li>
+                <li><a href="begin-here-v2.html">Begin Here</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="program.html">Program</a></li>
+                <li><a href="investment.html">Contact</a></li>
+                <li><a href="apply.html">Apply</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Our Approach</h1>
+        <p style="font-size: 1.4rem; font-weight: 600;">Integrating unprejudiced presence, vital perception, and AI precision</p>
+    </section>
+
+    <!-- Our Approach: Visual Journey -->
+    <section class="section">
+        <p style="text-align: center; max-width: 900px; margin: 0 auto 3rem; font-size: 1.2rem; color: #666;">A systematic path that transforms how you perceive, practice, and partner with technology</p>
+        
+        <!-- Visual Milestone Journey -->
+        <div style="position: relative; max-width: 1000px; margin: 0 auto; padding: 4rem 2rem;">
+            <!-- The Winding Path (SVG-like effect with CSS) -->
+            <div style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; z-index: 0;">
+                <svg width="100%" height="800" viewBox="0 0 1000 800" preserveAspectRatio="none" style="position: absolute;">
+                    <path d="M 50 700 Q 200 650, 250 550 T 500 450 T 750 350 T 950 250" 
+                          stroke="#e0e0e0" 
+                          stroke-width="60" 
+                          fill="none" 
+                          opacity="0.4"/>
+                </svg>
+            </div>
+            
+            <!-- Milestones -->
+            <div style="position: relative; z-index: 1;">
+                <!-- Milestone 1: Presence -->
+                <div class="milestone-container" style="display: flex; align-items: center; margin-bottom: 5rem; margin-left: 0;">
+                    <div class="milestone-circle" style="width: 140px; height: 140px; background: linear-gradient(135deg, #7c9cad 0%, #5a7c8a 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(92, 124, 138, 0.3); flex-shrink: 0; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                        <span style="font-size: 3rem;">🧘</span>
+                    </div>
+                    <div style="margin-left: 2rem; max-width: 500px;">
+                        <h3 style="color: #667eea; font-size: 1.8rem; margin: 0 0 0.5rem 0;">1. Facilitate Unprejudiced Presence</h3>
+                        <p style="font-size: 1.1rem; color: #555; margin: 0; line-height: 1.7;"><strong>Ground yourself before you observe.</strong> Daily Focusing practice trains you to pause, clear internal noise, and meet patients from a space of genuine openness. This isn't meditation—it's professional preparation. <em>You become the instrument Hahnemann described.</em></p>
+                    </div>
+                </div>
+                
+                <!-- Milestone 2: Perception -->
+                <div class="milestone-container" style="display: flex; align-items: center; margin-bottom: 5rem; margin-left: 15%; flex-direction: row-reverse;">
+                    <div class="milestone-circle" style="width: 140px; height: 140px; background: linear-gradient(135deg, #d4c4a8 0%, #b8a88a 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(184, 168, 138, 0.3); flex-shrink: 0; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                        <span style="font-size: 3rem;">👁️</span>
+                    </div>
+                    <div style="margin-right: 2rem; max-width: 500px; text-align: right;">
+                        <h3 style="color: #667eea; font-size: 1.8rem; margin: 0 0 0.5rem 0;">2. Receive Vital Perception</h3>
+                        <p style="font-size: 1.1rem; color: #555; margin: 0; line-height: 1.7;"><strong>Sense what's beneath words.</strong> Through trained resonance, you attune to the felt quality of the patient's experience—not analyzing, but receiving. This perception reveals patterns no repertory can capture. <em>You hear the whispers of vital force.</em></p>
+                    </div>
+                </div>
+                
+                <!-- Milestone 3: Patterns -->
+                <div class="milestone-container" style="display: flex; align-items: center; margin-bottom: 5rem; margin-left: 30%;">
+                    <div class="milestone-circle" style="width: 140px; height: 140px; background: linear-gradient(135deg, #8fa888 0%, #6d8a66 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(109, 138, 102, 0.3); flex-shrink: 0; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                        <span style="font-size: 3rem;">🔍</span>
+                    </div>
+                    <div style="margin-left: 2rem; max-width: 500px;">
+                        <h3 style="color: #667eea; font-size: 1.8rem; margin: 0 0 0.5rem 0;">3. Recognize Superclass Patterns</h3>
+                        <p style="font-size: 1.1rem; color: #555; margin: 0; line-height: 1.7;"><strong>Sense patterns through felt experience.</strong> The six superclasses become sensing tools—ways of recognizing energetic qualities in patients' lived experience. You learn to <em>feel</em> patterns before naming them. <a href="program.html" style="color: #667eea; font-weight: 600;">Learn more about our superclass framework →</a></p>
+                    </div>
+                </div>
+                
+                <!-- Milestone 4: Precision -->
+                <div class="milestone-container" style="display: flex; align-items: center; margin-bottom: 5rem; margin-left: 45%; flex-direction: row-reverse;">
+                    <div class="milestone-circle" style="width: 140px; height: 140px; background: linear-gradient(135deg, #a8a8d8 0%, #8a8ac8 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(138, 138, 200, 0.3); flex-shrink: 0; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                        <span style="font-size: 3rem;">🤖</span>
+                    </div>
+                    <div style="margin-right: 2rem; max-width: 500px; text-align: right;">
+                        <h3 style="color: #667eea; font-size: 1.8rem; margin: 0 0 0.5rem 0;">4. AI Synergy for Precision</h3>
+                        <p style="font-size: 1.1rem; color: #555; margin: 0; line-height: 1.7;"><strong>Partner with intelligence, not replace it.</strong> Feed your felt-sense observations into AI for pattern matching and remedy precision. You stay human-centered; AI handles encyclopedic cross-referencing. <em>The future belongs to this collaboration.</em></p>
+                    </div>
+                </div>
+                
+                <!-- Milestone 5: Preserver -->
+                <div class="milestone-container" style="display: flex; align-items: center; margin-left: 60%;">
+                    <div class="milestone-circle" style="width: 140px; height: 140px; background: linear-gradient(135deg, #c8956f 0%, #a67850 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(166, 120, 80, 0.3); flex-shrink: 0; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                        <span style="font-size: 3rem;">🌱</span>
+                    </div>
+                    <div style="margin-left: 2rem; max-width: 500px;">
+                        <h3 style="color: #667eea; font-size: 1.8rem; margin: 0 0 0.5rem 0;">5. Preserver of Health</h3>
+                        <p style="font-size: 1.1rem; color: #555; margin: 0; line-height: 1.7;"><strong>Remove obstacles, nurture the vital force.</strong> Before prescribing, identify what blocks healing. Your role transcends remedy selection—you become a guardian of health, preserving and strengthening life force itself. <em>Following Hahnemann's direction to the higher purpose of existence.</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Why This Sequence Matters -->
+        <div style="background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%); padding: 3rem; border-radius: 15px; margin-top: 4rem; border-left: 5px solid #667eea;">
+            <h3 style="color: #667eea; margin-bottom: 1.5rem; font-size: 1.8rem;">Why This Sequence Matters</h3>
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1rem;">Traditional homeopathy teaching reverses this order. It starts with pattern recognition (step 3), assumes presence (step 1), and ignores perception training (step 2) entirely. The result? Practitioners who can name remedies but struggle to truly perceive.</p>
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1rem;"><strong>Sahaja follows Hahnemann's actual instruction:</strong> train the instrument of observation first. Presence → Perception → Patterns → Precision → Preserver. Each step builds on the last.</p>
+            <p style="font-size: 1.1rem; line-height: 1.8; margin: 0;"><strong>The outcome?</strong> In 9 months, you become therapeutic regardless of remedy perfection—because healing begins in the quality of your presence, not just the precision of your prescription.</p>
+        </div>
+    </section>
+
+    <!-- Differentiation -->
+    <section class="section">
+        <h2>How Sahaja Differs</h2>
+        <p style="text-align: center; max-width: 900px; margin: 0 auto 2rem;">We respect all homeopathic traditions while offering something distinctly different: <strong>systematic training in the skill AI cannot replace.</strong></p>
+        
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Approach</th>
+                        <th>Starting Point</th>
+                        <th>Presence Training</th>
+                        <th>AI Integration</th>
+                        <th>Sahaja Difference</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Classical Homeopathy</strong></td>
+                        <td>Repertory & Materia Medica</td>
+                        <td>Assumed, not taught</td>
+                        <td>Not addressed</td>
+                        <td>We teach presence <em>before</em> technique</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sankaran's Method</strong></td>
+                        <td>Progressive stages to 7th level</td>
+                        <td>Destination, not starting point</td>
+                        <td>Minimal</td>
+                        <td>We <em>start</em> at 7th level through Focusing</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gurukul Programs</strong></td>
+                        <td>Multi-year apprenticeship</td>
+                        <td>Learning by osmosis</td>
+                        <td>Traditional methods</td>
+                        <td>Systematic training in 9 months vs. osmosis</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PEM (Gandhi)</strong></td>
+                        <td>Classification-first analysis</td>
+                        <td>Analytical approach</td>
+                        <td>Database-driven</td>
+                        <td>Wholeness through felt sense before classification</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sahaja Method</strong></td>
+                        <td>Daily Focusing practice</td>
+                        <td><span class="check">✓</span> Systematic, research-backed</td>
+                        <td><span class="check">✓</span> Full partnership model</td>
+                        <td>Presence as trained skill + AI synergy</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <h3 style="margin-top: 3rem;">Compatible With All Methods</h3>
+        <p>Sahaja is not a competing system—it's a <strong>foundational skill layer</strong> that enhances any homeopathic approach. Whether you practice classical, sensation-based, or process-oriented homeopathy, trained presence improves everything.</p>
+        
+        <p>Think of it this way: Focusing is to homeopathy what meditation is to psychotherapy. It doesn't replace your method—it deepens your capacity to practice it well.</p>
+    </section>
+
+    <!-- Respecting Gurukuls -->
+    <section class="section" style="background: #f8f9ff;">
+        <h2>Honoring Tradition, Innovating Practice</h2>
+        <p>Several prestigious gurukul programs offer multi-year apprenticeships with master homeopaths. We respect this tradition deeply—the value of learning alongside experienced practitioners, absorbing their wisdom through proximity.</p>
+        
+        <p><strong>But we recognize its limitation:</strong> Osmosis is unreliable. Not every student intuits what the master demonstrates. Presence remains implicit, never explicitly trained.</p>
+        
+        <p>Sahaja makes explicit what gurukuls leave implicit. We don't replace apprenticeship—we accelerate and systematize the core skill: unprejudiced observation through embodied presence.</p>
+        
+        <p>Our graduates will be <em>better</em> apprentices if they later choose gurukul training, because they'll arrive with a trained instrument of perception.</p>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="text-align: center; padding: 5rem 2rem;">
+        <h2>Experience the Difference</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Learn the approach that makes presence your primary skill and AI your strategic partner.</p>
+        <a href="apply.html" class="cta-button">Apply to Beta Cohort</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Sahaja Homeopathy. All rights reserved.</p>
+        <p style="margin-top: 1rem;">
+            <a href="mailto:contact@sahajahomeopathy.com">contact@sahajahomeopathy.com</a>
+        </p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+        
+        // Enhanced Visual Journey Interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add staggered animation delays to milestones
+            const milestones = document.querySelectorAll('.milestone-container');
+            milestones.forEach((milestone, index) => {
+                milestone.style.animationDelay = `${index * 0.2}s`;
+            });
+            
+            // Add click handlers for milestone circles
+            const circles = document.querySelectorAll('.milestone-circle');
+            circles.forEach(circle => {
+                circle.addEventListener('click', function() {
+                    // Add a pulse effect
+                    this.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 200);
+                });
+            });
+            
+            // Intersection Observer for scroll-triggered animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe milestone containers
+            milestones.forEach(milestone => {
+                milestone.style.opacity = '0';
+                milestone.style.transform = 'translateY(30px)';
+                milestone.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(milestone);
+            });
+        });
+    </script>
+</body>
+</html>

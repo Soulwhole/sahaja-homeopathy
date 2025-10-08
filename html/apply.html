@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Now - Sahaja Homeopathy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+        /* Dropdown */
+        .has-dropdown { position: relative; }
+        .dropdown { display:none; position:absolute; top:100%; left:0; background:#667eea; padding:0.75rem 1rem; border-radius:0 0 6px 6px; min-width:180px; }
+        .dropdown a { color:#fff; display:block; padding:0.25rem 0; text-decoration:none; }
+        .has-dropdown:hover .dropdown { display:block; }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Content Sections */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #667eea;
+            text-align: center;
+        }
+        
+        .section p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 5px solid #667eea;
+        }
+        
+        .info-box h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .info-box ul {
+            margin-left: 1.5rem;
+            line-height: 2;
+        }
+        
+        /* Application Form */
+        .application-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
+            margin-top: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 2rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        .form-group .required {
+            color: #e74c3c;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-group .helper-text {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        /* Checkbox Group */
+        .checkbox-group {
+            margin-top: 1rem;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin-right: 0.5rem;
+        }
+        
+        /* Submit Button */
+        .submit-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .submit-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Timeline */
+        .timeline {
+            margin: 3rem 0;
+        }
+        
+        .timeline-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 19px;
+            top: 40px;
+            bottom: -30px;
+            width: 2px;
+            background: #e0e0e0;
+        }
+        
+        .timeline-item:last-child::before {
+            display: none;
+        }
+        
+        .timeline-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .timeline-content h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        /* Mobile */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #667eea;
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            .dropdown { position: static; display: block; background: #667eea; padding-left: 1rem; border-radius: 0; }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            
+            .application-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Sahaja Homeopathy</a>
+            <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="program.html">Program</a></li>
+                <li class="has-dropdown">
+                    <a href="#">About ▾</a>
+                    <div class="dropdown">
+                        <a href="approach.html">Our Approach</a>
+                        <a href="founder.html">Founder</a>
+                        <a href="focusing.html">Focusing</a>
+                    </div>
+                </li>
+                <li><a href="investment.html">Investment</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="apply.html" class="active">Apply</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Apply to Beta Cohort</h1>
+        <p>Join the founding group of 8-10 practitioners shaping the future of homeopathic education</p>
+    </section>
+
+    <!-- Important Information -->
+    <section class="section">
+        <div class="info-box">
+            <h3>🌟 Founding Cohort Benefits</h3>
+            <ul>
+                <li><strong>Special pricing:</strong> ₹45,000 (50% less than future cohorts)</li>
+                <li><strong>Lifetime resource access:</strong> All future content additions, free forever</li>
+                <li><strong>Direct influence:</strong> Shape curriculum development in real-time</li>
+                <li><strong>Small group:</strong> Maximum attention and personalized guidance</li>
+                <li><strong>Founding member status:</strong> Listed as charter members</li>
+            </ul>
+        </div>
+        
+        <h2 style="margin-top: 3rem;">Who Should Apply?</h2>
+        <p><strong>This program is for you if:</strong></p>
+        <ul style="margin-left: 2rem; line-height: 2;">
+            <li>You have completed basic homeopathy education (BHMS, diploma, or equivalent)</li>
+            <li>You're an intern or early practitioner seeking to deepen perceptual skills</li>
+            <li>You feel overwhelmed by encyclopedic knowledge and want systematic training in presence</li>
+            <li>You're curious about integrating AI into your practice ethically</li>
+            <li>You can commit 10-15 hours/week for 9 months</li>
+            <li>You value being therapeutic regardless of finding perfect similimum</li>
+        </ul>
+        
+        <p style="margin-top: 2rem;"><strong>This program may NOT be for you if:</strong></p>
+        <ul style="margin-left: 2rem; line-height: 2;">
+            <li>You're a complete beginner to homeopathy</li>
+            <li>You're looking for quick-fix remedy protocols</li>
+            <li>You're skeptical about the value of Focusing/presence work</li>
+            <li>You're not comfortable with technology or AI tools</li>
+            <li>You cannot commit to weekly live sessions</li>
+        </ul>
+    </section>
+
+    <!-- Application Process -->
+    <section class="section" style="background: #f8f9ff; padding: 4rem 2rem;">
+        <h2>Application Process</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">We review applications on a rolling basis. Early application is encouraged as spots are limited.</p>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-number">1</div>
+                <div class="timeline-content">
+                    <h4>Submit Application</h4>
+                    <p>Complete the form below. Take your time—thoughtful responses help us understand your readiness and fit for the program.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-number">2</div>
+                <div class="timeline-content">
+                    <h4>Initial Review (3-5 days)</h4>
+                    <p>We review your application and educational background. If it's a good fit, we'll invite you to a conversation.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-number">3</div>
+                <div class="timeline-content">
+                    <h4>Personal Interview (45 min)</h4>
+                    <p>A video conversation to explore your goals, discuss the program in depth, and ensure mutual fit. This is your chance to ask questions too.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-number">4</div>
+                <div class="timeline-content">
+                    <h4>Decision & Enrollment</h4>
+                    <p>If accepted, you'll receive an offer within 48 hours. We'll discuss payment options and send enrollment materials.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-number">5</div>
+                <div class="timeline-content">
+                    <h4>Program Begins</h4>
+                    <p>Start date: <strong>[TO BE ANNOUNCED]</strong><br>Orientation week begins 2 weeks before official start.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form -->
+    <section class="section">
+        <h2>Application Form</h2>
+        <p style="text-align: center; margin-bottom: 2rem;">Please answer all questions thoughtfully. There are no "right" answers—we want to understand who you are and what you're seeking.</p>
+        
+        <form class="application-form" id="applicationForm" action="https://formspree.io/f/xnngbjwl" method="POST">
+            <!-- Personal Information -->
+            <h3 style="color: #667eea; margin-bottom: 1.5rem;">Personal Information</h3>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Full Name <span class="required">*</span></label>
+                    <input type="text" name="fullName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Email Address <span class="required">*</span></label>
+                    <input type="email" name="email" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Phone Number <span class="required">*</span></label>
+                    <input type="tel" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>City, State <span class="required">*</span></label>
+                    <input type="text" name="location" required>
+                </div>
+            </div>
+            
+            <!-- Educational Background -->
+            <h3 style="color: #667eea; margin: 3rem 0 1.5rem;">Educational Background</h3>
+            
+            <div class="form-group">
+                <label>Homeopathy Qualification <span class="required">*</span></label>
+                <select name="qualification" required>
+                    <option value="">-- Select --</option>
+                    <option value="bhms">BHMS (Bachelor of Homeopathic Medicine & Surgery)</option>
+                    <option value="dhms">DHMS (Diploma in Homeopathic Medicine & Surgery)</option>
+                    <option value="md">MD Homeopathy</option>
+                    <option value="certificate">Certificate Course</option>
+                    <option value="other">Other (please specify below)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Institution & Year of Graduation <span class="required">*</span></label>
+                <input type="text" name="institution" placeholder="e.g., ABC Homeopathic Medical College, 2022" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Additional Training or Certifications</label>
+                <textarea name="additionalTraining" placeholder="Any workshops, advanced courses, mentorships, or other homeopathy-related training"></textarea>
+            </div>
+            
+            <!-- Practice Experience -->
+            <h3 style="color: #667eea; margin: 3rem 0 1.5rem;">Practice Experience</h3>
+            
+            <div class="form-group">
+                <label>Current Practice Status <span class="required">*</span></label>
+                <select name="practiceStatus" required>
+                    <option value="">-- Select --</option>
+                    <option value="intern">Currently an intern/student</option>
+                    <option value="new">Just starting practice (0-1 year)</option>
+                    <option value="early">Early practitioner (1-3 years)</option>
+                    <option value="established">Established practice (3-5 years)</option>
+                    <option value="experienced">Experienced practitioner (5+ years)</option>
+                    <option value="not-practicing">Not currently practicing</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Approximate number of patients you've treated <span class="required">*</span></label>
+                <input type="text" name="patientsCount" placeholder="e.g., 50 patients" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Describe your current approach to case-taking and analysis <span class="required">*</span></label>
+                <textarea name="currentApproach" placeholder="What methods do you currently use? What challenges do you face?" required></textarea>
+                <div class="helper-text">Be honest—we want to understand where you're starting from</div>
+            </div>
+            
+            <!-- Technology Comfort -->
+            <h3 style="color: #667eea; margin: 3rem 0 1.5rem;">Technology & AI</h3>
+            
+            <div class="form-group">
+                <label>Have you used AI tools (ChatGPT, Claude, etc.)? <span class="required">*</span></label>
+                <select name="aiExperience" required>
+                    <option value="">-- Select --</option>
+                    <option value="never">Never used</option>
+                    <option value="tried">Tried once or twice</option>
+                    <option value="occasional">Use occasionally</option>
+                    <option value="regular">Use regularly</option>
+                    <option value="advanced">Advanced user</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>If yes, how have you used AI in your homeopathy practice or learning?</label>
+                <textarea name="aiUsage" placeholder="e.g., researching remedies, differential diagnosis, learning materia medica..."></textarea>
+            </div>
+            
+            <!-- Motivation -->
+            <h3 style="color: #667eea; margin: 3rem 0 1.5rem;">Your Motivation</h3>
+            
+            <div class="form-group">
+                <label>Why are you interested in Sahaja specifically? <span class="required">*</span></label>
+                <textarea name="whySahaja" placeholder="What drew you to this program over others?" required></textarea>
+                <div class="helper-text">What resonated with you about the focus on presence and AI integration?</div>
+            </div>
+            
+            <div class="form-group">
+                <label>What do you hope to gain from this 9-month program? <span class="required">*</span></label>
+                <textarea name="goals" placeholder="Be specific about your learning goals and desired outcomes" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Have you experienced or practiced any form of mindfulness, meditation, or body-centered awareness? <span class="required">*</span></label>
+                <textarea name="mindfulnessExperience" placeholder="e.g., meditation practice, yoga, therapy, Vipassana, or none—all answers welcome" required></textarea>
+            </div>
+            
+            <!-- Commitment -->
+            <h3 style="color: #667eea; margin: 3rem 0 1.5rem;">Commitment & Logistics</h3>
+            
+            <div class="form-group">
+                <label>Can you commit to 10-15 hours per week for 9 months? <span class="required">*</span></label>
+                <select name="timeCommitment" required>
+                    <option value="">-- Select --</option>
+                    <option value="yes-confident">Yes, confidently</option>
+                    <option value="yes-challenging">Yes, but it will be challenging</option>
+                    <option value="maybe">Maybe—depends on circumstances</option>
+                    <option value="no">No, that's too much time</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Live sessions are Wednesdays, 7-10 PM IST. Can you attend regularly? <span class="required">*</span></label>
+                <select name="sessionAttendance" required>
+                    <option value="">-- Select --</option>
+                    <option value="yes">Yes, that works perfectly</option>
+                    <option value="mostly">I can attend most sessions</option>
+                    <option value="sometimes">I might miss occasionally</option>
+                    <option value="difficult">That time is difficult for me</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Preferred Payment Option <span class="required">*</span></label>
+                <select name="paymentOption" required>
+                    <option value="">-- Select --</option>
+                    <option value="full">Full payment (₹45,000)</option>
+                    <option value="three">3 installments (₹16,000 × 3)</option>
+                    <option value="monthly">Monthly payments (₹6,000 × 9)</option>
+                    <option value="scholarship">Need-based scholarship consideration</option>
+                </select>
+            </div>
+            
+            <!-- Final Questions -->
+            <h3 style="color: #667eea; margin: 3rem 0 1.5rem;">Final Questions</h3>
+            
+            <div class="form-group">
+                <label>Is there anything else you'd like us to know about you or your application?</label>
+                <textarea name="additionalInfo" placeholder="Any unique circumstances, special interests, or questions?"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>How did you hear about Sahaja Homeopathy? <span class="required">*</span></label>
+                <input type="text" name="referralSource" placeholder="e.g., social media, colleague referral, web search..." required>
+            </div>
+            
+            <!-- Consent -->
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="consent" name="consent" required>
+                    <label for="consent">I confirm that all information provided is accurate and complete <span class="required">*</span></label>
+                </div>
+                
+                <div class="checkbox-item">
+                    <input type="checkbox" id="privacy" name="privacy" required>
+                    <label for="privacy">I agree to be contacted via email/phone regarding my application <span class="required">*</span></label>
+                </div>
+            </div>
+            
+            <!-- Submit Button -->
+            <button type="submit" class="submit-button">Submit Application</button>
+            
+            <p style="text-align: center; margin-top: 1.5rem; color: #666; font-size: 0.95rem;">
+                You'll receive a confirmation email within 24 hours. We'll review your application within 3-5 business days.
+            </p>
+        </form>
+    </section>
+
+    <!-- Questions -->
+    <section class="section" style="background: #f8f9ff; padding: 4rem 2rem; text-align: center;">
+        <h2>Questions?</h2>
+        <p>If you have questions before applying, we're happy to help.</p>
+        <p style="margin-top: 1rem;">
+            <strong>Email:</strong> <a href="mailto:contact@sahajahomeopathy.com" style="color: #667eea;">contact@sahajahomeopathy.com</a>
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Sahaja Homeopathy. All rights reserved.</p>
+        <p style="margin-top: 1rem;">
+            <a href="mailto:contact@sahajahomeopathy.com">contact@sahajahomeopathy.com</a>
+        </p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+        
+        // Note: Form posts directly to Formspree via the form action
+    </script>
+</body>
+</html>

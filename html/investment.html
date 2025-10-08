@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment - Sahaja Homeopathy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+        /* Dropdown */
+        .has-dropdown { position: relative; }
+        .dropdown { display:none; position:absolute; top:100%; left:0; background:#667eea; padding:0.75rem 1rem; border-radius:0 0 6px 6px; min-width:180px; }
+        .dropdown a { color:#fff; display:block; padding:0.25rem 0; text-decoration:none; }
+        .has-dropdown:hover .dropdown { display:block; }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Content Sections */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #667eea;
+            text-align: center;
+        }
+        
+        .section p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem 2rem;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
+            text-align: center;
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .pricing-card.featured {
+            border: 3px solid #667eea;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.25);
+        }
+        
+        .badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .pricing-card h3 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #764ba2;
+            margin: 1rem 0;
+        }
+        
+        .price-subtext {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .features-list {
+            text-align: left;
+            margin: 2rem 0;
+        }
+        
+        .features-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: start;
+        }
+        
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .check-icon {
+            color: #667eea;
+            margin-right: 0.75rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        /* Value Comparison */
+        .value-box {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+            padding: 2.5rem;
+            border-radius: 10px;
+            margin: 3rem 0;
+            border-left: 5px solid #667eea;
+        }
+        
+        .value-table {
+            margin-top: 2rem;
+        }
+        
+        .value-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .value-row:first-child {
+            font-weight: bold;
+            background: #667eea;
+            color: white;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .value-row:last-child {
+            border-bottom: none;
+        }
+        
+        /* CTA Button */
+        .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .cta-button-outline {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        /* Payment Options */
+        .payment-info {
+            background: #f8f9ff;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 3rem;
+            text-align: center;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        /* Mobile */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #667eea;
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            .dropdown { position: static; display: block; background: #667eea; padding-left: 1rem; border-radius: 0; }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .value-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            
+            .value-row div:first-child::after {
+                content: ":";
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Sahaja Homeopathy</a>
+            <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="program.html">Program</a></li>
+                <li class="has-dropdown">
+                    <a href="#">About ▾</a>
+                    <div class="dropdown">
+                        <a href="approach.html">Our Approach</a>
+                        <a href="founder.html">Founder</a>
+                        <a href="focusing.html">Focusing</a>
+                    </div>
+                </li>
+                <li><a href="investment.html" class="active">Investment</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="apply.html">Apply</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Program Investment</h1>
+        <p>A comprehensive 9-month transformation at a fraction of traditional program costs</p>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section">
+        <h2>Choose Your Path</h2>
+        
+        <div class="pricing-grid">
+            <!-- Beta Cohort -->
+            <div class="pricing-card featured">
+                <div class="badge">FOUNDING COHORT - LIMITED SPOTS</div>
+                <h3>Beta Program</h3>
+                <div class="price">₹45,000</div>
+                <div class="price-subtext">for complete 9-month program</div>
+                
+                <ul class="features-list">
+                    <li><span class="check-icon">✓</span> All program curriculum & materials</li>
+                    <li><span class="check-icon">✓</span> Weekly live supervision (3 hours)</li>
+                    <li><span class="check-icon">✓</span> Daily Focusing practice guides</li>
+                    <li><span class="check-icon">✓</span> AI tools & custom prompt library</li>
+                    <li><span class="check-icon">✓</span> 1:1 monthly check-ins</li>
+                    <li><span class="check-icon">✓</span> Private community access</li>
+                    <li><span class="check-icon">✓</span> <strong>LIFETIME alumni resource library access</strong></li>
+                    <li><span class="check-icon">✓</span> <strong>Founding member benefits</strong></li>
+                    <li><span class="check-icon">✓</span> <strong>Direct influence on program development</strong></li>
+                </ul>
+                
+                <a href="apply.html" class="cta-button">Apply Now</a>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">Only 8-10 spots available</p>
+            </div>
+            
+            <!-- Future Cohorts -->
+            <div class="pricing-card">
+                <div class="badge" style="background: #999;">FUTURE COHORTS</div>
+                <h3>Regular Program</h3>
+                <div class="price">₹90,000</div>
+                <div class="price-subtext">for complete 9-month program</div>
+                
+                <ul class="features-list">
+                    <li><span class="check-icon">✓</span> All program curriculum & materials</li>
+                    <li><span class="check-icon">✓</span> Weekly live supervision (3 hours)</li>
+                    <li><span class="check-icon">✓</span> Daily Focusing practice guides</li>
+                    <li><span class="check-icon">✓</span> AI tools & custom prompt library</li>
+                    <li><span class="check-icon">✓</span> 1:1 monthly check-ins</li>
+                    <li><span class="check-icon">✓</span> Private community access</li>
+                    <li><span class="check-icon">✓</span> Lifetime alumni resource library access</li>
+                    <li><span style="opacity: 0.4;">✗</span> Founding member pricing</li>
+                    <li><span style="opacity: 0.4;">✗</span> Beta cohort benefits</li>
+                </ul>
+                
+                <a href="apply.html" class="cta-button cta-button-outline">Join Waitlist</a>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">Next cohort starts in 9 months</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Comparison -->
+    <section class="section" style="background: #f8f9ff;">
+        <h2>Exceptional Value</h2>
+        <p style="text-align: center; max-width: 900px; margin: 0 auto 2rem;">Compare our all-inclusive online program with traditional in-person training:</p>
+        
+        <div class="value-box">
+            <h3 style="color: #667eea; margin-bottom: 1.5rem;">Traditional vs. Sahaja</h3>
+            
+            <div class="value-table">
+                <div class="value-row">
+                    <div>Component</div>
+                    <div>Traditional Programs</div>
+                    <div>Sahaja</div>
+                </div>
+                <div class="value-row">
+                    <div>Program Tuition</div>
+                    <div>₹50,000 - ₹1,10,000</div>
+                    <div>₹45,000 (beta)</div>
+                </div>
+                <div class="value-row">
+                    <div>Travel & Accommodation</div>
+                    <div>₹50,000 - ₹1,40,000</div>
+                    <div>₹0 (fully online)</div>
+                </div>
+                <div class="value-row">
+                    <div>Time Away from Practice</div>
+                    <div>Multiple weeks</div>
+                    <div>None (flexible schedule)</div>
+                </div>
+                <div class="value-row">
+                    <div>AI Integration Training</div>
+                    <div>Not included</div>
+                    <div>✓ Comprehensive</div>
+                </div>
+                <div class="value-row">
+                    <div>Focusing/Presence Training</div>
+                    <div>Optional or assumed</div>
+                    <div>✓ Core curriculum</div>
+                </div>
+                <div class="value-row">
+                    <div>Lifetime Resource Access</div>
+                    <div>Limited</div>
+                    <div>✓ Complete library</div>
+                </div>
+                <div class="value-row" style="background: #e8ecff; font-weight: bold;">
+                    <div>Total Investment</div>
+                    <div>₹1,00,000 - ₹2,50,000</div>
+                    <div>₹45,000</div>
+                </div>
+            </div>
+        </div>
+        
+        <p style="text-align: center; font-size: 1.2rem; margin-top: 2rem;"><strong>Save 60-80% while getting systematic presence training and AI integration not available elsewhere.</strong></p>
+    </section>
+
+    <!-- Payment Options -->
+    <section class="section">
+        <h2>Flexible Payment Options</h2>
+        <div class="payment-info">
+            <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">We understand the financial commitment. Payment plans available:</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; text-align: left;">
+                <div>
+                    <h4 style="color: #667eea; margin-bottom: 0.5rem;">Option 1: Full Payment</h4>
+                    <p>₹45,000 upfront<br><em>Best value - no additional fees</em></p>
+                </div>
+                <div>
+                    <h4 style="color: #667eea; margin-bottom: 0.5rem;">Option 2: 3 Installments</h4>
+                    <p>₹16,000 × 3 months<br><em>Total: ₹48,000</em></p>
+                </div>
+                <div>
+                    <h4 style="color: #667eea; margin-bottom: 0.5rem;">Option 3: Monthly</h4>
+                    <p>₹6,000 × 9 months<br><em>Total: ₹54,000</em></p>
+                </div>
+            </div>
+            
+            <p style="margin-top: 2rem; font-size: 0.95rem; color: #666;">Payment plans discussed during application interview. Financial need scholarships may be available for exceptional candidates.</p>
+        </div>
+    </section>
+
+    <!-- What's Included Detailed -->
+    <section class="section" style="background: #f8f9ff;">
+        <h2>Complete Program Breakdown</h2>
+        <p style="text-align: center; max-width: 900px; margin: 0 auto 2rem;">Here's exactly what your investment includes:</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+            <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 3px 15px rgba(102, 126, 234, 0.1);">
+                <h3 style="color: #667eea; margin-bottom: 1rem;">Learning Materials</h3>
+                <ul style="line-height: 2;">
+                    <li>36 weekly video modules</li>
+                    <li>100+ practice cases</li>
+                    <li>Reading materials & resources</li>
+                    <li>Study guides & worksheets</li>
+                </ul>
+            </div>
+            
+            <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 3px 15px rgba(102, 126, 234, 0.1);">
+                <h3 style="color: #667eea; margin-bottom: 1rem;">Live Instruction</h3>
+                <ul style="line-height: 2;">
+                    <li>108 hours live supervision</li>
+                    <li>9 monthly 1:1 check-ins</li>
+                    <li>Weekly Q&A access</li>
+                    <li>Peer group facilitation</li>
+                </ul>
+            </div>
+            
+            <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 3px 15px rgba(102, 126, 234, 0.1);">
+                <h3 style="color: #667eea; margin-bottom: 1rem;">Practice Tools</h3>
+                <ul style="line-height: 2;">
+                    <li>AI prompt library (100+ prompts)</li>
+                    <li>Case documentation templates</li>
+                    <li>Patient intake forms</li>
+                    <li>Follow-up protocols</li>
+                </ul>
+            </div>
+            
+            <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 3px 15px rgba(102, 126, 234, 0.1);">
+                <h3 style="color: #667eea; margin-bottom: 1rem;">Focusing Training</h3>
+                <ul style="line-height: 2;">
+                    <li>Daily practice audio guides</li>
+                    <li>Peer partnership matching</li>
+                    <li>Focusing certification pathway</li>
+                    <li>Ongoing practice community</li>
+                </ul>
+            </div>
+            
+            <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 3px 15px rgba(102, 126, 234, 0.1);">
+                <h3 style="color: #667eea; margin-bottom: 1rem;">Community & Support</h3>
+                <ul style="line-height: 2;">
+                    <li>Private learning community</li>
+                    <li>Email support throughout</li>
+                    <li>Alumni network access</li>
+                    <li>Continuing education events</li>
+                </ul>
+            </div>
+            
+            <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 3px 15px rgba(102, 126, 234, 0.1);">
+                <h3 style="color: #667eea; margin-bottom: 1rem;">Lifetime Benefits</h3>
+                <ul style="line-height: 2;">
+                    <li>Content library access (forever)</li>
+                    <li>All future library updates</li>
+                    <li>Alumni-only masterclasses</li>
+                    <li>Completion certificate</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Quick Answers -->
+    <section class="section">
+        <h2>Common Questions</h2>
+        
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div style="background: white; padding: 2rem; margin-bottom: 1.5rem; border-radius: 10px; box-shadow: 0 3px 15px rgba(102, 126, 234, 0.1);">
+                <h4 style="color: #667eea; margin-bottom: 0.5rem;">Do I need prior homeopathy training?</h4>
+                <p>Yes. This program is designed for homeopathic interns and practitioners, not beginners. You should have completed basic homeopathy education.</p>
+            </div>
+            
+            <div style="background: white; padding: 2rem; margin-bottom: 1.5rem; border-radius: 10px; box-shadow: 0 3px 15px rgba(102, 126, 234, 0.1);">
+                <h4 style="color: #667eea; margin-bottom: 0.5rem;">What if I can't attend live sessions?</h4>
+                <p>All live sessions are recorded and available within 24 hours. However, live attendance is strongly encouraged for maximum benefit.</p>
+            </div>
+            
+            <div style="background: white; padding: 2rem; margin-bottom: 1.5rem; border-radius: 10px; box-shadow: 0 3px 15px rgba(102, 126, 234, 0.1);">
+                <h4 style="color: #667eea; margin-bottom: 0.5rem;">Is this accredited?</h4>
+                <p>You'll receive a Sahaja Homeopathy completion certificate. We're exploring formal accreditation pathways for future cohorts.</p>
+            </div>
+            
+            <div style="background: white; padding: 2rem; margin-bottom: 1.5rem; border-radius: 10px; box-shadow: 0 3px 15px rgba(102, 126, 234, 0.1);">
+                <h4 style="color: #667eea; margin-bottom: 0.5rem;">What happens after the 9 months?</h4>
+                <p>You retain lifetime access to all content library materials, can participate in alumni events, and have ongoing community access for support.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section" style="text-align: center; padding: 5rem 2rem; background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);">
+        <h2>Secure Your Spot in the Founding Cohort</h2>
+        <p style="font-size: 1.2rem; margin: 1.5rem 0;">Only 8-10 founding members will shape this program. Be one of them.</p>
+        <a href="apply.html" class="cta-button">Apply Now</a>
+        <p style="margin-top: 1rem; color: #666;">Applications reviewed on rolling basis. Early application encouraged.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Sahaja Homeopathy. All rights reserved.</p>
+        <p style="margin-top: 1rem;">
+            <a href="mailto:contact@sahajahomeopathy.com">contact@sahajahomeopathy.com</a>
+        </p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

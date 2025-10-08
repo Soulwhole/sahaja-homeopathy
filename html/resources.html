@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - Sahaja Homeopathy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
+        nav { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 1rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
+        .logo { color: white; font-size: 1.5rem; font-weight: bold; text-decoration: none; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; }
+        .nav-links a:hover, .nav-links a.active { opacity: 0.8; text-decoration: underline; }
+        .page-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 4rem 2rem; text-align: center; }
+        .page-header h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .section { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .section h2 { font-size: 2.5rem; margin-bottom: 2rem; color: #667eea; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .card { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 3px 15px rgba(102, 126, 234, 0.1); }
+        .badge { display: inline-block; padding: 0.25rem 0.6rem; background: #e8ecff; color: #667eea; border-radius: 4px; font-size: 0.85rem; font-weight: 600; }
+        .quote-box { background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%); border-left: 5px solid #667eea; padding: 2rem; margin: 2rem 0; border-radius: 5px; }
+        footer { background: #2d3748; color: white; padding: 3rem 2rem; text-align: center; }
+        footer a { color: #667eea; text-decoration: none; }
+        .mobile-menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #667eea; flex-direction: column; padding: 1rem; gap: 1rem; }
+            .nav-links.active { display: flex; }
+            .mobile-menu-toggle { display: block; }
+        }
+    </style>
+    </head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Sahaja Homeopathy</a>
+            <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="program.html">Program</a></li>
+                <li class="has-dropdown">
+                    <a href="#">About ▾</a>
+                    <div class="dropdown">
+                        <a href="approach.html">Our Approach</a>
+                        <a href="founder.html">Founder</a>
+                        <a href="focusing.html">Focusing</a>
+                    </div>
+                </li>
+                <li><a href="investment.html">Investment</a></li>
+                <li><a href="resources.html" class="active">Resources</a></li>
+                <li><a href="apply.html">Apply</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <h1>Content Library</h1>
+        <p>Cases, videos, remedy profiles, and tools to support lifelong learning</p>
+    </section>
+
+    <section class="section">
+        <h2>Library Overview</h2>
+        <div class="grid">
+            <div class="card">
+                <h3 style="color:#667eea; margin-bottom: 0.5rem;">Cases</h3>
+                <p>100+ practice cases with felt-sense guidance</p>
+                <span class="badge">Growing</span>
+            </div>
+            <div class="card">
+                <h3 style="color:#667eea; margin-bottom: 0.5rem;">Videos</h3>
+                <p>50+ hours of teaching and case walkthroughs</p>
+                <span class="badge">In Progress</span>
+            </div>
+            <div class="card">
+                <h3 style="color:#667eea; margin-bottom: 0.5rem;">Remedy Profiles</h3>
+                <p>100+ profiles organized by superclass</p>
+                <span class="badge">In Progress</span>
+            </div>
+            <div class="card">
+                <h3 style="color:#667eea; margin-bottom: 0.5rem;">Study Tools</h3>
+                <p>Prompts, checklists, and templates for daily practice</p>
+                <span class="badge">Alpha</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background:#f8f9ff;">
+        <h2>Core Learning Modules</h2>
+        <div class="grid">
+            <div class="card"><h4 style="color:#667eea;">Presence & Focusing</h4><p>Guided audio, practice logs, and supervision aids</p><span class="badge">Ready</span></div>
+            <div class="card"><h4 style="color:#667eea;">Superclass Framework</h4><p>Felt-sense differentiators and pattern cues</p><span class="badge">Ready</span></div>
+            <div class="card"><h4 style="color:#667eea;">AI Partnership</h4><p>Prompt library and ethical integration guidelines</p><span class="badge">Ready</span></div>
+            <div class="card"><h4 style="color:#667eea;">Case-Taking</h4><p>Embodied questioning and synthesis</p><span class="badge">In Progress</span></div>
+            <div class="card"><h4 style="color:#667eea;">Remedy Selection</h4><p>Human + AI precision workflow</p><span class="badge">In Progress</span></div>
+            <div class="card"><h4 style="color:#667eea;">Follow-ups</h4><p>Beginner's mind and obstacle removal</p><span class="badge">Planned</span></div>
+            <div class="card"><h4 style="color:#667eea;">Practice Setup</h4><p>Ethics, business, and patient management</p><span class="badge">Planned</span></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Sample Case Preview</h2>
+        <div class="quote-box">
+            <p style="font-style:italic;">"The Weight of Responsibility" — A practitioner describes a chest heaviness that eases only when tasks are completed. Felt quality reveals Structure/Control tensions guiding the differential.</p>
+        </div>
+        <p style="text-align:center;">Full library access is included for alumni. Community and institutional tiers coming soon.</p>
+    </section>
+
+    <section class="section" style="background:#f8f9ff;">
+        <h2>Access Tiers</h2>
+        <div class="grid">
+            <div class="card"><h3 style="color:#667eea;">Alumni</h3><p>Free, forever</p></div>
+            <div class="card"><h3 style="color:#667eea;">Community</h3><p>₹999/month</p></div>
+            <div class="card"><h3 style="color:#667eea;">Institutional</h3><p>₹75,000/year</p></div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Sahaja Homeopathy. All rights reserved.</p>
+        <p style="margin-top: 1rem;"><a href="mailto:contact@sahajahomeopathy.com">contact@sahajahomeopathy.com</a></p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
+

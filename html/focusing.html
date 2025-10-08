@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focusing - Sahaja Homeopathy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
+        nav { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 1rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
+        .logo { color: white; font-size: 1.5rem; font-weight: bold; text-decoration: none; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; }
+        .nav-links a:hover, .nav-links a.active { opacity: 0.8; text-decoration: underline; }
+        .has-dropdown { position: relative; }
+        .dropdown { display:none; position:absolute; top:100%; left:0; background:#667eea; padding:0.75rem 1rem; border-radius:0 0 6px 6px; min-width:180px; }
+        .dropdown a { color:#fff; display:block; padding:0.25rem 0; text-decoration:none; }
+        .has-dropdown:hover .dropdown { display:block; }
+        .page-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 4rem 2rem; text-align: center; }
+        .page-header h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .section { padding: 4rem 2rem; max-width: 900px; margin: 0 auto; }
+        .card { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 3px 15px rgba(102,126,234,0.1); }
+        .quote-box { background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%); border-left: 5px solid #667eea; padding: 2rem; margin: 2rem 0; border-radius: 5px; font-style: italic; }
+        footer { background: #2d3748; color: white; padding: 3rem 2rem; text-align: center; }
+        footer a { color: #667eea; text-decoration: none; }
+        .mobile-menu-toggle { display:none; background:none; border:none; color:white; font-size:1.5rem; cursor:pointer; }
+        @media (max-width:768px){
+            .nav-links { display:none; position:absolute; top:100%; left:0; right:0; background:#667eea; flex-direction:column; padding:1rem; gap:1rem; }
+            .nav-links.active { display:flex; }
+            .mobile-menu-toggle { display:block; }
+            .dropdown { position: static; display: block; background: #667eea; padding-left: 1rem; border-radius: 0; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Sahaja Homeopathy</a>
+            <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li class="has-dropdown">
+                    <a href="#" class="active">About ▾</a>
+                    <div class="dropdown">
+                        <a href="approach.html">Our Approach</a>
+                        <a href="founder.html">Founder</a>
+                        <a href="focusing.html" class="active">Focusing</a>
+                    </div>
+                </li>
+                <li><a href="begin-here-v2.html">Begin Here</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="program.html">Program</a></li>
+                <li><a href="investment.html">Contact</a></li>
+                <li><a href="apply.html">Apply</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <h1>Focusing</h1>
+        <p>The research-backed practice that trains unprejudiced presence</p>
+    </section>
+
+    <!-- What is Focusing -->
+    <section class="section">
+        <div class="card">
+            <h2 style="color:#667eea; margin-bottom: 0.75rem;">What is Focusing?</h2>
+            <p style="margin-bottom: 1.5rem;">Focusing is a practice of staying with the "felt sense"—the preverbal bodily knowing of experience—and allowing it to unfold with curiosity. Rather than analyzing with your intellect, you befriend your inner experience with patience.</p>
+            <p style="margin-bottom: 1.5rem;">This way of paying attention is natural for nearly half the population, though mostly unconscious. The step-by-step Focusing method makes this life-forwarding practice accessible at will in any situation.</p>
+            <p style="margin-bottom: 1.5rem;">For homeopathic practice, Focusing offers multiple benefits:</p>
+            <ul style="margin-left: 1.25rem; line-height: 1.9; margin-bottom: 1.5rem;">
+                <li><strong>Before consultations:</strong> It helps practitioners clear personal agendas, biases, and past experiences before beginning a session.</li>
+                <li><strong>During sessions:</strong> The undercurrent of Focusing skill keeps you mindful of what inside you might hijack the client's process, allowing you to gently set that aside and remain unprejudiced.</li>
+                <li><strong>For personal growth:</strong> It supports the homeopath's lifelong evolution in pushing personal boundaries as a practitioner of the unprejudiced healing art.</li>
+            </ul>
+            <div class="quote-box">"Focusing is a way of paying attention to one's being-in-the-world, one's interaction as it is experienced through the individual (but not separate) body." — Eugene Gendlin</div>
+        </div>
+    </section>
+
+    <!-- Meet Eugene T. Gendlin -->
+    <section class="section" style="max-width: 1200px;">
+        <div class="card">
+            <h2 style="color:#667eea; margin-bottom: 1.5rem;">Meet Eugene T. Gendlin</h2>
+            <div style="display:grid; grid-template-columns: 1.2fr 400px; gap: 2rem; align-items: start;">
+                <div>
+                    <p style="margin-bottom: 1.5rem;">Eugene Gendlin (1926-2017) was an Austrian-born American philosopher and psychologist who developed the practice of Focusing. While researching what made psychotherapy effective at the University of Chicago, he discovered that successful clients shared a common trait: they naturally paused to check in with a bodily felt sense of their issues before putting things into words.</p>
+                    <p style="margin-bottom: 1.5rem;">This insight led Gendlin to develop Focusing as a teachable method, making this natural process accessible to everyone. He spent decades refining the technique and training others, founding The International Focusing Institute to share this work globally.</p>
+                    <p style="margin-bottom: 1.5rem;">Gendlin authored numerous books, including <em>Focusing</em> (1978) and <em>Experiencing and the Creation of Meaning</em>, bridging philosophy, psychology, and experiential practice. His work emphasizes that the body carries a kind of knowing that transcends verbal thought—a wisdom we can learn to access and trust.</p>
+                    <p style="margin-bottom: 0;"><strong>Learn more:</strong> <a href="https://focusing.org" target="_blank" style="color:#667eea;">The International Focusing Institute</a></p>
+                </div>
+                <div style="text-align:center;">
+                    <div style="width: 400px; height: 500px; overflow: hidden; margin: 0 auto; box-shadow: 0 6px 20px rgba(0,0,0,0.12); background:#edf2f7; display:flex; align-items:center; justify-content:center; position: relative;">
+                        <img src="gendlin.png" alt="Eugene T. Gendlin" style="width:100%; height:100%; object-fit: cover; display:block;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Focusing Integration -->
+    <section class="section">
+        <div class="card">
+            <h2 style="color:#667eea; margin-bottom: 1.5rem;">Why Focusing?</h2>
+            <p style="text-align: center; max-width: 900px; margin: 0 auto 2rem;">Focusing is a research-backed method developed by philosopher Eugene Gendlin for accessing "felt sense"—the pre-verbal, bodily awareness of one's experiencing. For homeopaths, it's the missing link between mechanical questioning and true unprejudiced observation.</p>
+            
+            <div class="quote-box">
+                "Focusing is a way of paying attention to one's being-in-the-world, one's interaction as it is experienced through the individual (but not separate) body."
+                <div class="author">— Eugene Gendlin, philosopher and psychotherapist</div>
+            </div>
+            
+            <h3 style="color:#667eea; margin-top: 2rem;">Dual Function in Homeopathy</h3>
+            
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                <div class="card" style="box-shadow:none; background:#f8f9ff;">
+                    <h4 style="color:#667eea; margin-bottom: 1rem;">1. Therapeutic Process</h4>
+                    <p>When patients learn to stay with their felt sense—that vague, unclear bodily knowing—something shifts before any remedy is given. The process itself initiates healing by helping patients connect with what their body already knows.</p>
+                    <p><strong>You become therapeutic regardless of perfect similimum.</strong></p>
+                </div>
+                
+                <div class="card" style="box-shadow:none; background:#f8f9ff;">
+                    <h4 style="color:#667eea; margin-bottom: 1rem;">2. Diagnostic Clarity</h4>
+                    <p>Focusing makes implicit patterns explicit. When a patient says "I feel stuck," Focusing helps them discover: "It's like a heavy weight on my chest, pressing down, making it hard to breathe." This precision guides remedy selection.</p>
+                    <p><strong>Felt sense becomes data AI can work with.</strong></p>
+                </div>
+            </div>
+            
+            <h3 style="color:#667eea; margin-top: 3rem;">Why Name It Explicitly?</h3>
+            <p>We could call it "empathetic listening" or "deep presence" and leave it vague. Instead, we name Focusing because:</p>
+            <ul style="margin-left: 2rem; margin-top: 1rem; line-height: 1.8;">
+                <li><strong>Research credibility:</strong> Decades of psychotherapy outcome studies validate its effectiveness</li>
+                <li><strong>Systematic training:</strong> Distinguishes learnable skills from hoped-for osmosis</li>
+                <li><strong>Philosophical depth:</strong> Honors Gendlin's existential phenomenology—the same tradition Hahnemann drew from</li>
+                <li><strong>Professional legitimacy:</strong> Connects homeopathy to body-centered psychotherapy and somatic healing</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Daily Practice & Materials -->
+    <section class="section">
+        <div class="card">
+            <h2 style="color:#667eea; margin-bottom: 0.75rem;">Daily Practice</h2>
+            <p>[Outline how students practice: short daily sits, guided audio, peer partnerships, and supervision. Add links later.]</p>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                <div class="card" style="box-shadow:none; background:#f8f9ff;">
+                    <h3 style="color:#667eea;">Guided Audio</h3>
+                    <p>Placeholder for links to 10–20 min practices.</p>
+                </div>
+                <div class="card" style="box-shadow:none; background:#f8f9ff;">
+                    <h3 style="color:#667eea;">Practice Log</h3>
+                    <p>Simple template to reflect and track sessions.</p>
+                </div>
+                <div class="card" style="box-shadow:none; background:#f8f9ff;">
+                    <h3 style="color:#667eea;">Peer Partners</h3>
+                    <p>Weekly co-practice for skill integration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA to Approach page -->
+    <section class="section" style="text-align:center;">
+        <p>Want the full methodology? Explore <a href="approach.html" style="color:#667eea;">Our Approach</a>.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Sahaja Homeopathy. All rights reserved.</p>
+        <p style="margin-top: 1rem;"><a href="mailto:contact@sahajahomeopathy.com">contact@sahajahomeopathy.com</a></p>
+    </footer>
+
+    <script>
+        function toggleMenu(){ const navLinks=document.getElementById('navLinks'); navLinks.classList.toggle('active'); }
+    </script>
+</body>
+</html>
+
